@@ -4,8 +4,8 @@ K3
 cModel Technology
 dC:\Users\Filip\Desktop\vlsi proj\simulation\modelsim
 Ebranch_predictor
-Z0 w1449682210
-Z1 DPx4 work 12 custom_types 0 22 V_nk0>Zm>L972M?znZIzf3
+Z0 w1449692404
+Z1 DPx4 work 12 custom_types 0 22 ]`BmC3?jB4?W^OgQFZjXM3
 Z2 DPx4 ieee 11 numeric_std 0 22 O3PF8EB`?j9=z7KT`fn941
 Z3 DPx3 std 6 textio 0 22 5>J:;AW>W0[[dW0I6EN1Q0
 Z4 DPx4 ieee 14 std_logic_1164 0 22 5=aWaoGZSMWIcH0i^f`XF1
@@ -14,25 +14,25 @@ Z6 8C:/Users/Filip/Desktop/Pipeline/branch_predictor.vhd
 Z7 FC:/Users/Filip/Desktop/Pipeline/branch_predictor.vhd
 l0
 L6
-V`O<We8DMEig@j`N;jW?hz1
+VUgM199WgTM8OEc?<GQc601
 Z8 OV;C;10.1d;51
 32
-Z9 !s108 1449682307.566000
+Z9 !s108 1449692522.598000
 Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/Filip/Desktop/Pipeline/branch_predictor.vhd|
 Z11 !s107 C:/Users/Filip/Desktop/Pipeline/branch_predictor.vhd|
 Z12 o-work work -2002 -explicit -O0
 Z13 tExplicit 1
-!s100 HM=m`D6_gcaQojOe4HziF1
+!s100 94ED8Z[dVhSSfJliQMcXk1
 !i10b 1
 Abranch_predictor_arch
 R1
 R2
 R3
 R4
-DEx4 work 16 branch_predictor 0 22 `O<We8DMEig@j`N;jW?hz1
-l38
-L22
-VJdO?fV:_<D;Mc=HkXP[JJ1
+DEx4 work 16 branch_predictor 0 22 UgM199WgTM8OEc?<GQc601
+l44
+L23
+Vk6T2heQI0Yo2T@PQ5N0Fo3
 R8
 32
 R9
@@ -40,10 +40,10 @@ R10
 R11
 R12
 R13
-!s100 Zh:J]J7>9<MZ<`g=KXFIg1
+!s100 8njiNd@<nN[iLA7el0FVM0
 !i10b 1
 Ebranch_predictor_vhd_tst
-Z14 w1449682337
+Z14 w1449692687
 R3
 R4
 R5
@@ -56,7 +56,7 @@ VCanRo>7g0JgNXd7M6n9ld1
 R8
 32
 !i10b 1
-Z17 !s108 1449682342.440000
+Z17 !s108 1449692692.651000
 Z18 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/Filip/Desktop/Pipeline/simulation/modelsim/branch_predictor.vht|
 Z19 !s107 C:/Users/Filip/Desktop/Pipeline/simulation/modelsim/branch_predictor.vht|
 R12
@@ -65,10 +65,10 @@ Abranch_predictor_arch
 R3
 R4
 Z20 DEx4 work 24 branch_predictor_vhd_tst 0 22 CanRo>7g0JgNXd7M6n9ld1
-l55
+l57
 L32
-VgFDV7SJ[?FUdj@kboPilk0
-!s100 Aj:@z;a_LicmzkEBa[OfC1
+VcooZX]Y18J5QHEPZ:4S<13
+!s100 R;P9VID`7o`aQLo@6PWC[1
 R8
 32
 !i10b 1
@@ -154,20 +154,20 @@ R13
 Pcustom_types
 R3
 R4
-w1449594218
+w1449691094
 R5
 8C:/Users/Filip/Desktop/Pipeline/custom_types.vhd
 FC:/Users/Filip/Desktop/Pipeline/custom_types.vhd
 l0
 L4
-VV_nk0>Zm>L972M?znZIzf3
+V]`BmC3?jB4?W^OgQFZjXM3
 R8
 32
 R12
 R13
-!s100 _OM0jJR`DjiLC33C]@5mo0
+!s100 9RT5URiMh]5@ikVhZODG83
 !i10b 1
-!s108 1449679260.125000
+!s108 1449692519.240000
 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/Filip/Desktop/Pipeline/custom_types.vhd|
 !s107 C:/Users/Filip/Desktop/Pipeline/custom_types.vhd|
 Edecoder_32

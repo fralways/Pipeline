@@ -40,11 +40,13 @@ SIGNAL prediction_was_success : STD_LOGIC;
 SIGNAL update_entry : STD_LOGIC;
 SIGNAL update_entry_pc : STD_LOGIC_VECTOR(31 DOWNTO 0);
 SIGNAL update_entry_jmp_address : STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL is_prediction_entry_found : STD_LOGIC;
 COMPONENT branch_predictor
 	PORT (
 	clk : IN STD_LOGIC;
 	get_prediction : IN STD_LOGIC;
 	prediction : OUT STD_LOGIC;
+	is_prediction_entry_found : OUT STD_LOGIC;
 	prediction_address : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
 	prediction_was_success : IN STD_LOGIC;
 	update_entry : IN STD_LOGIC;
@@ -63,6 +65,7 @@ BEGIN
 	prediction_was_success => prediction_was_success,
 	update_entry => update_entry,
 	update_entry_pc => update_entry_pc,
+	is_prediction_entry_found => is_prediction_entry_found,
 	update_entry_jmp_address => update_entry_jmp_address
 	);    
                                 

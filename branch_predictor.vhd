@@ -14,7 +14,7 @@ port
 	update_entry_pc : in std_logic_vector(31 downto 0);
 	update_entry_jmp_address : in std_logic_vector(31 downto 0);
 	
-	has_entry : out std_logic;
+	is_prediction_entry_found : out std_logic;
 	prediction : out std_logic;
 	prediction_address : out std_logic_vector(31 downto 0)
 );
@@ -22,7 +22,13 @@ end branch_predictor;
 
 architecture branch_predictor_arch of branch_predictor is
 
-	signal branch_entries : array_of_branch_entries;
+	signal branch_entries : array_of_branch_entries := (others=>
+									(
+                             pc_value => (others => '0'), 
+                             prediction_value => (others => '0'),
+                             jump_address => (others => '0'),
+									  v => '0'
+                           ));
 	
 procedure prediction_bits_to_value(prediction_bits: std_logic_vector(1 downto 0); prediction_value: out std_logic) is
 begin
@@ -44,15 +50,15 @@ begin
 		variable found_entry_index : integer;
 		variable prediction_value : std_logic;
 		variable prediction_number : integer;
-		variable branch_entries_count : integer range 0 to 8 := 0;
+		variable head : integer range 0 to 8 := 0;
 	begin
 		
 		if (rising_edge(clk)) then
 			if (get_prediction = '1') then
-				has_entry <= '0';
+				is_prediction_entry_found <= '0';
 				found_entry := false;
-				for i in 0 to 8 loop
-					if (branch_entries_count > i) then
+				for i in 0 to 7 loop
+					if (branch_entries(i).v = '1') then
 						if (update_entry_pc = branch_entries(i).pc_value) then
 							found_entry := true;
 							found_entry_index := i;
@@ -65,24 +71,24 @@ begin
 					prediction_bits_to_value(branch_entries(found_entry_index).prediction_value, prediction_value);
 					prediction <= prediction_value;
 					prediction_address <= branch_entries(found_entry_index).jump_address;
-					has_entry <= '1';
+					is_prediction_entry_found <= '1';
 				else
-					branch_entry :=
+					branch_entries(head) <=
                            (
-                             pc_value => update_entry_pc, 
-                             prediction_value => "10",
-                             jump_address => (others => '0')
+										v => '1',
+										pc_value => update_entry_pc, 
+										prediction_value => "10",
+										jump_address => (others => '0')
                            );
-					branch_entries(branch_entries_count) <= branch_entry;
-					branch_entries_count := branch_entries_count + 1;
-					if (branch_entries_count > 8) then
-						branch_entries_count := 8;
+					head := head + 1;
+					if (head > 7) then
+						head := 0;
 					end if;
 				end if;
 			elsif (update_entry = '1') then
 				found_entry := false;
-				for i in 0 to 8 loop
-					if (branch_entries_count > i) then
+				for i in 0 to 7 loop
+					if (branch_entries(i).v = '1') then
 						if (update_entry_pc = branch_entries(i).pc_value) then
 							found_entry := true;
 							found_entry_index := i;
@@ -101,10 +107,9 @@ begin
 						if (prediction_number > 0) then
 							prediction_number := prediction_number - 1;
 						end if;
-						
-						branch_entries(found_entry_index).prediction_value <= std_logic_vector(to_unsigned(prediction_number, branch_entries(found_entry_index).prediction_value'length));					
-						branch_entries(found_entry_index).jump_address <= update_entry_jmp_address;
 					end if;
+					branch_entries(found_entry_index).prediction_value <= std_logic_vector(to_unsigned(prediction_number, branch_entries(found_entry_index).prediction_value'length));					
+					branch_entries(found_entry_index).jump_address <= update_entry_jmp_address;
 				end if;
 			end if;
 		end if;
