@@ -1,0 +1,429 @@
+m255
+K3
+13
+cModel Technology
+dC:\Users\Filip\Desktop\vlsi proj\simulation\modelsim
+Ebranch_predictor
+Z0 w1449682210
+Z1 DPx4 work 12 custom_types 0 22 V_nk0>Zm>L972M?znZIzf3
+Z2 DPx4 ieee 11 numeric_std 0 22 O3PF8EB`?j9=z7KT`fn941
+Z3 DPx3 std 6 textio 0 22 5>J:;AW>W0[[dW0I6EN1Q0
+Z4 DPx4 ieee 14 std_logic_1164 0 22 5=aWaoGZSMWIcH0i^f`XF1
+Z5 dC:\Users\Filip\Desktop\Pipeline\simulation\modelsim
+Z6 8C:/Users/Filip/Desktop/Pipeline/branch_predictor.vhd
+Z7 FC:/Users/Filip/Desktop/Pipeline/branch_predictor.vhd
+l0
+L6
+V`O<We8DMEig@j`N;jW?hz1
+Z8 OV;C;10.1d;51
+32
+Z9 !s108 1449682307.566000
+Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/Filip/Desktop/Pipeline/branch_predictor.vhd|
+Z11 !s107 C:/Users/Filip/Desktop/Pipeline/branch_predictor.vhd|
+Z12 o-work work -2002 -explicit -O0
+Z13 tExplicit 1
+!s100 HM=m`D6_gcaQojOe4HziF1
+!i10b 1
+Abranch_predictor_arch
+R1
+R2
+R3
+R4
+DEx4 work 16 branch_predictor 0 22 `O<We8DMEig@j`N;jW?hz1
+l38
+L22
+VJdO?fV:_<D;Mc=HkXP[JJ1
+R8
+32
+R9
+R10
+R11
+R12
+R13
+!s100 Zh:J]J7>9<MZ<`g=KXFIg1
+!i10b 1
+Ebranch_predictor_vhd_tst
+Z14 w1449682337
+R3
+R4
+R5
+Z15 8C:/Users/Filip/Desktop/Pipeline/simulation/modelsim/branch_predictor.vht
+Z16 FC:/Users/Filip/Desktop/Pipeline/simulation/modelsim/branch_predictor.vht
+l0
+L30
+VCanRo>7g0JgNXd7M6n9ld1
+!s100 ?z;0=f0cnI4H:OR<k05Ul3
+R8
+32
+!i10b 1
+Z17 !s108 1449682342.440000
+Z18 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/Filip/Desktop/Pipeline/simulation/modelsim/branch_predictor.vht|
+Z19 !s107 C:/Users/Filip/Desktop/Pipeline/simulation/modelsim/branch_predictor.vht|
+R12
+R13
+Abranch_predictor_arch
+R3
+R4
+Z20 DEx4 work 24 branch_predictor_vhd_tst 0 22 CanRo>7g0JgNXd7M6n9ld1
+l55
+L32
+VgFDV7SJ[?FUdj@kboPilk0
+!s100 Aj:@z;a_LicmzkEBa[OfC1
+R8
+32
+!i10b 1
+R17
+R18
+R19
+R12
+R13
+Ecache
+Z21 w1449344025
+Z22 DPx4 ieee 16 std_logic_textio 0 22 ?Il0a149GV276[?[UMDWh2
+R2
+R3
+R4
+R5
+Z23 8C:/Users/Filip/Desktop/Pipeline/Cache.vhd
+Z24 FC:/Users/Filip/Desktop/Pipeline/Cache.vhd
+l0
+L7
+V[aeL0DJcT;G_6i^AId;=j1
+R8
+32
+Z25 !s108 1449592527.515000
+Z26 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/Filip/Desktop/Pipeline/Cache.vhd|
+Z27 !s107 C:/Users/Filip/Desktop/Pipeline/Cache.vhd|
+R12
+R13
+!s100 =^24>zEVzQiB<>:m_GH:N0
+!i10b 1
+Acachearch
+R22
+R2
+R3
+R4
+DEx4 work 5 cache 0 22 [aeL0DJcT;G_6i^AId;=j1
+l84
+L22
+V8V3:dO?h<7:ZmmD@cUUET1
+R8
+32
+R25
+R26
+R27
+R12
+R13
+!s100 UQ`8c53EcIkfJam8CL42:1
+!i10b 1
+Ecache_vhd_tst
+Z28 w1449343776
+R3
+R4
+R5
+Z29 8C:/Users/Filip/Desktop/Pipeline/simulation/modelsim/Cache.vht
+Z30 FC:/Users/Filip/Desktop/Pipeline/simulation/modelsim/Cache.vht
+l0
+L30
+VG^gh<i7@_Pmg_@SeYbH=c0
+R8
+32
+Z31 !s108 1449343785.691000
+Z32 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/Filip/Desktop/Pipeline/simulation/modelsim/Cache.vht|
+Z33 !s107 C:/Users/Filip/Desktop/Pipeline/simulation/modelsim/Cache.vht|
+R12
+R13
+!s100 Yio^4h^1G[4?iE]J=jilJ2
+!i10b 1
+Acache_arch
+R3
+R4
+DEx4 work 13 cache_vhd_tst 0 22 G^gh<i7@_Pmg_@SeYbH=c0
+l54
+L32
+Vm_<Sg18_z^H^[Tohe50M42
+R8
+32
+R31
+R32
+R33
+R12
+R13
+!s100 IodQZ0DagTEIH>9lKVkGS2
+!i10b 1
+Pcustom_types
+R3
+R4
+w1449594218
+R5
+8C:/Users/Filip/Desktop/Pipeline/custom_types.vhd
+FC:/Users/Filip/Desktop/Pipeline/custom_types.vhd
+l0
+L4
+VV_nk0>Zm>L972M?znZIzf3
+R8
+32
+R12
+R13
+!s100 _OM0jJR`DjiLC33C]@5mo0
+!i10b 1
+!s108 1449679260.125000
+!s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/Filip/Desktop/Pipeline/custom_types.vhd|
+!s107 C:/Users/Filip/Desktop/Pipeline/custom_types.vhd|
+Edecoder_32
+Z34 w1449428074
+R2
+R3
+R4
+R5
+Z35 8C:/Users/Filip/Desktop/Pipeline/decoder.vhd
+Z36 FC:/Users/Filip/Desktop/Pipeline/decoder.vhd
+l0
+L5
+VJLokIIR@lbinejFSXWh2P0
+R8
+32
+Z37 !s108 1449592527.811000
+Z38 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/Filip/Desktop/Pipeline/decoder.vhd|
+Z39 !s107 C:/Users/Filip/Desktop/Pipeline/decoder.vhd|
+R12
+R13
+!s100 dJJh9<3L1GQjQDMOZY`3a1
+!i10b 1
+Adecoder_32_arch
+R2
+R3
+R4
+DEx4 work 10 decoder_32 0 22 JLokIIR@lbinejFSXWh2P0
+l20
+L18
+Vd:GZ3_GmdVS8z3M]h6lf43
+R8
+32
+R37
+R38
+R39
+R12
+R13
+!s100 <TASP7OQ_SX0IU@D[z@De3
+!i10b 1
+Emx_32_1
+Z40 w1449427975
+Z41 DPx4 work 12 custom_types 0 22 GfMTe2Y@Q7HW8^4T=RCB50
+R2
+R3
+R4
+R5
+Z42 8C:/Users/Filip/Desktop/Pipeline/MX_32_1.vhd
+Z43 FC:/Users/Filip/Desktop/Pipeline/MX_32_1.vhd
+l0
+L7
+V8XLJ9]5o1G_4HAlLNb9nM3
+R8
+32
+Z44 !s108 1449592527.874000
+Z45 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/Filip/Desktop/Pipeline/MX_32_1.vhd|
+Z46 !s107 C:/Users/Filip/Desktop/Pipeline/MX_32_1.vhd|
+R12
+R13
+!s100 OEgiO6DTVoR:H?GoUCHiV0
+!i10b 1
+Amx_32_1_arch
+R41
+R2
+R3
+R4
+DEx4 work 7 mx_32_1 0 22 8XLJ9]5o1G_4HAlLNb9nM3
+l23
+L21
+VcXP_M`l^SnX`Ph]g]gLTi2
+R8
+32
+R44
+R45
+R46
+R12
+R13
+!s100 4TnGdhG]m^z90Eg9?eF792
+!i10b 1
+Epcreg
+Z47 w1449316680
+R2
+R3
+R4
+R5
+Z48 8C:/Users/Filip/Desktop/Pipeline/PCreg.vhd
+Z49 FC:/Users/Filip/Desktop/Pipeline/PCreg.vhd
+l0
+L5
+VEXYIeghgHGT4i:=M5c5=41
+R8
+32
+Z50 !s108 1449343785.639000
+Z51 !s90 -reportprogress|300|-work|work_test_pipeline|-2002|-explicit|C:/Users/Filip/Desktop/Pipeline/PCreg.vhd|
+Z52 !s107 C:/Users/Filip/Desktop/Pipeline/PCreg.vhd|
+Z53 o-work work_test_pipeline -2002 -explicit -O0
+R13
+!s100 :o=4TJJRioW^33zSLenYf3
+!i10b 1
+Apcreg_arch
+R2
+R3
+R4
+DEx4 work 5 pcreg 0 22 EXYIeghgHGT4i:=M5c5=41
+l19
+L18
+V5<3c]0e0Xfk_M^Ez;C6>a3
+R8
+32
+R50
+R51
+R52
+R53
+R13
+!s100 Q`^o?>BJJYA4HK343:Pb91
+!i10b 1
+Epcreg_vhd_tst
+Z54 w1449162502
+R3
+R4
+R5
+Z55 8C:/Users/Filip/Desktop/Pipeline/simulation/modelsim/PCreg.vht
+Z56 FC:/Users/Filip/Desktop/Pipeline/simulation/modelsim/PCreg.vht
+l0
+L30
+VZ0afM;]3EUdJfgf6i;=321
+R8
+32
+Z57 !s108 1449343785.588000
+Z58 !s90 -reportprogress|300|-work|work_test_pipeline|-2002|-explicit|C:/Users/Filip/Desktop/Pipeline/simulation/modelsim/PCreg.vht|
+Z59 !s107 C:/Users/Filip/Desktop/Pipeline/simulation/modelsim/PCreg.vht|
+R53
+R13
+!s100 cX5n?aGJ3o;SaWYFRSi=02
+!i10b 1
+Apcreg_arch
+R3
+R4
+DEx4 work 13 pcreg_vhd_tst 0 22 Z0afM;]3EUdJfgf6i;=321
+l51
+L32
+V_WD>QD@;PF[^EnUfULHL32
+R8
+32
+R57
+R58
+R59
+R53
+R13
+!s100 dV?4`QXD;2P0=Dc;dLOY22
+!i10b 1
+Ereg
+Z60 w1449423448
+R3
+R4
+R5
+Z61 8C:/Users/Filip/Desktop/Pipeline/reg.vhd
+Z62 FC:/Users/Filip/Desktop/Pipeline/reg.vhd
+l0
+L4
+VFC7OHZ1n]EBSA_51aeiXF2
+R8
+32
+Z63 !s108 1449592527.936000
+Z64 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/Filip/Desktop/Pipeline/reg.vhd|
+Z65 !s107 C:/Users/Filip/Desktop/Pipeline/reg.vhd|
+R12
+R13
+!s100 <Yz7MXMH_gT_:R6Nen>H32
+!i10b 1
+Areg_arch
+R3
+R4
+DEx4 work 3 reg 0 22 FC7OHZ1n]EBSA_51aeiXF2
+l17
+L16
+VTeYC]I0KG;[WeYRA99V052
+R8
+32
+R63
+R64
+R65
+R12
+R13
+!s100 6eMmz0=E>SWH_fBSVNGCW2
+!i10b 1
+Ereg_file
+Z66 w1449430987
+R41
+R2
+R3
+R4
+R5
+Z67 8C:/Users/Filip/Desktop/Pipeline/reg_file.vhd
+Z68 FC:/Users/Filip/Desktop/Pipeline/reg_file.vhd
+l0
+L7
+V`9becHR?NJb_5@nl7nXXJ2
+R8
+32
+Z69 !s108 1449592527.983000
+Z70 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/Filip/Desktop/Pipeline/reg_file.vhd|
+Z71 !s107 C:/Users/Filip/Desktop/Pipeline/reg_file.vhd|
+R12
+R13
+!s100 jo@D?YjZXi^2[kXS<gUnO1
+!i10b 1
+Areg_file_arch
+R41
+R2
+R3
+R4
+DEx4 work 8 reg_file 0 22 `9becHR?NJb_5@nl7nXXJ2
+l70
+L22
+V6YjRke`]aznfe`I2;D=ZU0
+R8
+32
+R69
+R70
+R71
+R12
+R13
+!s100 05Rl=XH:gbSRbNdmE:]j^0
+!i10b 1
+Ereg_file_vhd_tst
+Z72 w1449592717
+R3
+R4
+R5
+Z73 8C:/Users/Filip/Desktop/Pipeline/simulation/modelsim/reg_file.vht
+Z74 FC:/Users/Filip/Desktop/Pipeline/simulation/modelsim/reg_file.vht
+l0
+L30
+V^UB=I[WZ62>DlDQP=CFLH3
+R8
+32
+Z75 !s108 1449592726.384000
+Z76 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/Filip/Desktop/Pipeline/simulation/modelsim/reg_file.vht|
+Z77 !s107 C:/Users/Filip/Desktop/Pipeline/simulation/modelsim/reg_file.vht|
+R12
+R13
+!s100 Ao]^QDFOZPh?I_DN[Nz_G0
+!i10b 1
+Areg_file_arch
+R3
+R4
+DEx4 work 16 reg_file_vhd_tst 0 22 ^UB=I[WZ62>DlDQP=CFLH3
+l49
+L32
+VB`]WLd]PEXfdGPNM?hTf`2
+R8
+32
+R75
+R76
+R77
+R12
+R13
+!s100 cH:B1RaF5HZ1X^V[=OTfU0
+!i10b 1

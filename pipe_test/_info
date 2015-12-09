@@ -1,0 +1,77 @@
+m255
+K3
+13
+cModel Technology
+dC:\altera\13.0sp1
+Epcreg
+Z0 w1448200440
+Z1 DPx4 ieee 11 numeric_std 0 22 O3PF8EB`?j9=z7KT`fn941
+Z2 DPx3 std 6 textio 0 22 5>J:;AW>W0[[dW0I6EN1Q0
+Z3 DPx4 ieee 14 std_logic_1164 0 22 5=aWaoGZSMWIcH0i^f`XF1
+Z4 dD:\Aca - Fakultet\IR4\IR4VLSI\Projekat\WIP\Pipeline
+Z5 8D:/Aca - Fakultet/IR4/IR4VLSI/Projekat/WIP/Pipeline/PCreg.vhd
+Z6 FD:/Aca - Fakultet/IR4/IR4VLSI/Projekat/WIP/Pipeline/PCreg.vhd
+l0
+L6
+VGHC5egDmR33Y50RcH3XP@1
+!s100 LFQ`=0QhA3QE@dX=RdbIf0
+Z7 OV;C;10.1d;51
+32
+!i10b 1
+Z8 !s108 1448202021.085000
+Z9 !s90 -reportprogress|300|-work|pipe_test|-2002|-explicit|D:/Aca - Fakultet/IR4/IR4VLSI/Projekat/WIP/Pipeline/PCreg.vhd|
+Z10 !s107 D:/Aca - Fakultet/IR4/IR4VLSI/Projekat/WIP/Pipeline/PCreg.vhd|
+Z11 o-work pipe_test -2002 -explicit -O0
+Z12 tExplicit 1
+Apcreg_arch
+R1
+R2
+R3
+Z13 DEx4 work 5 pcreg 0 22 GHC5egDmR33Y50RcH3XP@1
+l19
+L18
+Z14 V6Y3?4Lk7LAW6]L0gNhe043
+Z15 !s100 CFc6XRQV?dYLo]Y`Z3OhT3
+R7
+32
+!i10b 1
+R8
+R9
+R10
+R11
+R12
+Epcreg_vhd_tst
+Z16 w1448202007
+R2
+R3
+R4
+Z17 8D:/Aca - Fakultet/IR4/IR4VLSI/Projekat/WIP/Pipeline/simulation/modelsim/PCreg.vht
+Z18 FD:/Aca - Fakultet/IR4/IR4VLSI/Projekat/WIP/Pipeline/simulation/modelsim/PCreg.vht
+l0
+L30
+VJDL]^JMaXeMi>=;zA@i550
+R7
+32
+Z19 !s108 1448202020.783000
+Z20 !s90 -reportprogress|300|-work|pipe_test|-2002|-explicit|D:/Aca - Fakultet/IR4/IR4VLSI/Projekat/WIP/Pipeline/simulation/modelsim/PCreg.vht|
+Z21 !s107 D:/Aca - Fakultet/IR4/IR4VLSI/Projekat/WIP/Pipeline/simulation/modelsim/PCreg.vht|
+R11
+R12
+!s100 cX5n?aGJ3o;SaWYFRSi=02
+!i10b 1
+Apcreg_arch
+R2
+R3
+DEx4 work 13 pcreg_vhd_tst 0 22 JDL]^JMaXeMi>=;zA@i550
+l51
+L32
+V5D[Mz8DSWT5D3Lj2F2ERI1
+R7
+32
+R19
+R20
+R21
+R11
+R12
+!s100 e;CiNQB7@VGAVg4k@MnGd0
+!i10b 1

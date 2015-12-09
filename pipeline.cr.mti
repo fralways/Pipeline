@@ -1,0 +1,20 @@
+{D:/Aca - Fakultet/IR4/IR4VLSI/Projekat/WIP/Pipeline/PCreg.vhd} {1 {vcom -work pipe_test -2002 -explicit {D:/Aca - Fakultet/IR4/IR4VLSI/Projekat/WIP/Pipeline/PCreg.vhd}
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity PCreg
+-- Compiling architecture pcreg_arch of PCreg
+
+} {} {}} {D:/Aca - Fakultet/IR4/IR4VLSI/Projekat/WIP/Pipeline/simulation/modelsim/PCreg.vht} {2 {vcom -work pipe_test -2002 -explicit {D:/Aca - Fakultet/IR4/IR4VLSI/Projekat/WIP/Pipeline/simulation/modelsim/PCreg.vht}
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity PCreg_vhd_tst
+-- Compiling architecture PCreg_arch of PCreg_vhd_tst
+** Warning: [2] D:/Aca - Fakultet/IR4/IR4VLSI/Projekat/WIP/Pipeline/simulation/modelsim/PCreg.vht(90): (vcom-1090) Possible infinite loop: Process contains no WAIT statement.
+
+
+} {} {}}
