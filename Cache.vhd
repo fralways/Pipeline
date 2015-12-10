@@ -25,42 +25,42 @@ procedure read_instruction_from_file(instr_num:integer; return_address: out std_
 	file loaded_file: text;
 	variable linija: line;
 	variable whitespace: character;
-	variable is_end_of_file: boolean;
-	variable end_file, temp_value: std_logic_vector(31 downto 0);
+	variable temp_value: std_logic_vector(31 downto 0);
 	variable i: integer range 0 to 1000 := 0;
 begin
-		is_end_of_file := true;
 		if (mode = 0) then 
 			file_open(loaded_file,"C:\Users\Filip\Desktop\Pipeline\ulazni fajl.txt", READ_MODE);
 		else
 			file_open(loaded_file,"C:\Users\Filip\Desktop\Pipeline\ulazni data fajl.txt", READ_MODE);
 		end if;
 		
-		while (i<1000) loop
-			i:=i+1;
-			if not endfile(loaded_file) then
-				readline(loaded_file, linija);
-				hread(linija, temp_value);
-
-				if (instr_num = 0 or to_integer(unsigned(temp_value)) = instr_num) then-- nasli smo koja nam treba
-					is_end_of_file := false;
-					return_address := temp_value;
-					--exit;  --komentarisano jer radi append u write to file, sto znaci da moze imati vise istih adresa, i tad uzima onu poslednju koju nadje
-				end if;
-			else
-				exit;
-			end if;
-		end loop;
-		
-		if (is_end_of_file = false) then
-			read(linija, whitespace); --pojedi razmak
-			read(linija, return_value);
+		readline(loaded_file, linija);
+		hread(linija, temp_value);
+		if (instr_num = 0 and mode = 0) then
+			return_address := temp_value;
+			return_value:= temp_value;
 		else
-			end_file:= (others=>'0');
-			return_address:=end_file;
-			return_value:= end_file;
-		end if;	
-	
+			while (i<1000) loop
+				i:=i+1;
+				if not endfile(loaded_file) then
+					readline(loaded_file, linija);
+					hread(linija, temp_value);
+					if (to_integer(unsigned(temp_value)) = instr_num) then-- nasli smo koja nam treba
+						return_address := temp_value;
+						read(linija, whitespace); --pojedi razmak
+						read(linija, return_value);
+						if (mode = 0) then
+							exit;
+						end if;
+						--exit;  --komentarisano jer radi append u write to file, sto znaci da moze imati vise istih adresa, i tad uzima onu poslednju koju nadje
+					end if;
+				else
+					return_address:= (31 downto 0 => '0');
+					return_value:= (31 downto 0 => '0');
+					exit;
+				end if;
+			end loop;
+		end if;
 end read_instruction_from_file;
 
 procedure write_instruction_to_file(instr_address:integer; data_in: in std_logic_vector) is

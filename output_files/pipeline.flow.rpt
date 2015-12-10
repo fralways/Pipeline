@@ -1,5 +1,5 @@
 Flow report for pipeline
-Thu Dec 10 11:49:39 2015
+Thu Dec 10 14:50:25 2015
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -40,18 +40,18 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Flow Summary                                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Flow Status                        ; Successful - Thu Dec 10 11:49:39 2015           ;
+; Flow Status                        ; Successful - Thu Dec 10 14:50:25 2015           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; pipeline                                        ;
-; Top-level Entity Name              ; fetch                                           ;
+; Top-level Entity Name              ; processor                                       ;
 ; Family                             ; Cyclone II                                      ;
 ; Device                             ; EP2C70F896I8                                    ;
 ; Timing Models                      ; Final                                           ;
-; Total logic elements               ; 1,157                                           ;
-;     Total combinational functions  ; 901                                             ;
-;     Dedicated logic registers      ; 576                                             ;
-; Total registers                    ; 576                                             ;
-; Total pins                         ; 198                                             ;
+; Total logic elements               ; 0                                               ;
+;     Total combinational functions  ; 0                                               ;
+;     Dedicated logic registers      ; 0                                               ;
+; Total registers                    ; 0                                               ;
+; Total pins                         ; 2                                               ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 0                                               ;
 ; Embedded Multiplier 9-bit elements ; 0                                               ;
@@ -64,7 +64,7 @@ applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 12/10/2015 11:49:33 ;
+; Start date & time ; 12/10/2015 14:50:24 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; pipeline            ;
 +-------------------+---------------------+
@@ -75,18 +75,18 @@ applicable agreement for further details.
 +-------------------------------------+---------------------------------------+---------------+-------------+----------------+
 ; Assignment Name                     ; Value                                 ; Default Value ; Entity Name ; Section Id     ;
 +-------------------------------------+---------------------------------------+---------------+-------------+----------------+
-; COMPILER_SIGNATURE_ID               ; 66064159567532.144974457302312        ; --            ; --          ; --             ;
+; COMPILER_SIGNATURE_ID               ; 66064159567532.144975542404252        ; --            ; --          ; --             ;
 ; EDA_OUTPUT_DATA_FORMAT              ; Vhdl                                  ; --            ; --          ; eda_simulation ;
 ; EDA_SIMULATION_TOOL                 ; ModelSim-Altera (VHDL)                ; <None>        ; --          ; --             ;
 ; MAX_CORE_JUNCTION_TEMP              ; 125                                   ; --            ; --          ; --             ;
 ; MIN_CORE_JUNCTION_TEMP              ; -40                                   ; --            ; --          ; --             ;
-; PARTITION_COLOR                     ; 16764057                              ; --            ; fetch       ; Top            ;
-; PARTITION_FITTER_PRESERVATION_LEVEL ; PLACEMENT_AND_ROUTING                 ; --            ; fetch       ; Top            ;
-; PARTITION_NETLIST_TYPE              ; SOURCE                                ; --            ; fetch       ; Top            ;
+; PARTITION_COLOR                     ; 16764057                              ; --            ; processor   ; Top            ;
+; PARTITION_FITTER_PRESERVATION_LEVEL ; PLACEMENT_AND_ROUTING                 ; --            ; processor   ; Top            ;
+; PARTITION_NETLIST_TYPE              ; SOURCE                                ; --            ; processor   ; Top            ;
 ; POWER_BOARD_THERMAL_MODEL           ; None (CONSERVATIVE)                   ; --            ; --          ; --             ;
 ; POWER_PRESET_COOLING_SOLUTION       ; 23 MM HEAT SINK WITH 200 LFPM AIRFLOW ; --            ; --          ; --             ;
 ; PROJECT_OUTPUT_DIRECTORY            ; output_files                          ; --            ; --          ; --             ;
-; TOP_LEVEL_ENTITY                    ; fetch                                 ; pipeline      ; --          ; --             ;
+; TOP_LEVEL_ENTITY                    ; processor                             ; pipeline      ; --          ; --             ;
 +-------------------------------------+---------------------------------------+---------------+-------------+----------------+
 
 
@@ -95,8 +95,8 @@ applicable agreement for further details.
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name          ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis ; 00:00:06     ; 1.0                     ; 492 MB              ; 00:00:06                           ;
-; Total                ; 00:00:06     ; --                      ; --                  ; 00:00:06                           ;
+; Analysis & Synthesis ; 00:00:01     ; 1.0                     ; 491 MB              ; 00:00:01                           ;
+; Total                ; 00:00:01     ; --                      ; --                  ; 00:00:01                           ;
 +----------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
