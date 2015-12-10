@@ -8,7 +8,9 @@ entity branch_predictor is
 port
 (
 	clk : in std_logic;
+	reset : in std_logic;
 	get_prediction : in std_logic;
+	prediction_entry_pc : in std_logic_vector(31 downto 0);
 	update_entry : in std_logic;
 	prediction_was_success : in std_logic;
 	update_entry_pc : in std_logic_vector(31 downto 0);
@@ -42,8 +44,8 @@ begin
 end prediction_bits_to_value;
 
 begin
-
-	process (clk)
+	
+	process(clk, reset)
 	
 		variable branch_entry : branch_predictor_entry;
 		variable found_entry : boolean;
@@ -52,10 +54,12 @@ begin
 		variable prediction_number : integer;
 		variable head : integer range 0 to 8 := 0;
 	begin
-		
-		if (rising_edge(clk)) then
-			if (get_prediction = '1') then
-				is_prediction_entry_found <= '0';
+		if (reset = '1') then
+			for i in 0 to 7 loop
+				branch_entries(i).v <= '0';
+			end loop;
+		elsif (rising_edge(clk)) then
+			if (update_entry = '1') then
 				found_entry := false;
 				for i in 0 to 7 loop
 					if (branch_entries(i).v = '1') then
@@ -66,37 +70,7 @@ begin
 						end if;
 					end if;
 				end loop;
-				
-				if (found_entry = true) then
-					prediction_bits_to_value(branch_entries(found_entry_index).prediction_value, prediction_value);
-					prediction <= prediction_value;
-					prediction_address <= branch_entries(found_entry_index).jump_address;
-					is_prediction_entry_found <= '1';
-				else
-					branch_entries(head) <=
-                           (
-										v => '1',
-										pc_value => update_entry_pc, 
-										prediction_value => "10",
-										jump_address => (others => '0')
-                           );
-					head := head + 1;
-					if (head > 7) then
-						head := 0;
-					end if;
-				end if;
-			elsif (update_entry = '1') then
-				found_entry := false;
-				for i in 0 to 7 loop
-					if (branch_entries(i).v = '1') then
-						if (update_entry_pc = branch_entries(i).pc_value) then
-							found_entry := true;
-							found_entry_index := i;
-							exit;
-						end if;
-					end if;
-				end loop;
-				
+					
 				if (found_entry = true) then
 					prediction_number :=  to_integer(unsigned(branch_entries(found_entry_index).prediction_value));
 					if (prediction_was_success = '1') then
@@ -112,8 +86,38 @@ begin
 					branch_entries(found_entry_index).jump_address <= update_entry_jmp_address;
 				end if;
 			end if;
+			if (get_prediction = '1') then
+				is_prediction_entry_found <= '0';
+				found_entry := false;
+				for i in 0 to 7 loop
+					if (branch_entries(i).v = '1') then
+						if (prediction_entry_pc = branch_entries(i).pc_value) then
+							found_entry := true;
+							found_entry_index := i;
+							exit;
+						end if;
+					end if;
+				end loop;
+				if (found_entry = true) then
+					prediction_bits_to_value(branch_entries(found_entry_index).prediction_value, prediction_value);
+					prediction <= prediction_value;
+					prediction_address <= branch_entries(found_entry_index).jump_address;
+					is_prediction_entry_found <= '1';
+				else
+					branch_entries(head) <=
+									(
+										v => '1',
+										pc_value => prediction_entry_pc, 
+										prediction_value => "10",
+										jump_address => (others => '0')
+									);
+					head := head + 1;
+					if (head > 7) then
+						head := 0;
+					end if;
+				end if;
+			end if;	
 		end if;
-			
 	end process;
 
 end branch_predictor_arch;

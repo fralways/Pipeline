@@ -8,7 +8,7 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling entity Cache
 -- Compiling architecture CacheArch of Cache
 
-} {} {}} C:/Users/Filip/Desktop/Pipeline/simulation/modelsim/branch_predictor.vht {1 {vcom -work work -2002 -explicit C:/Users/Filip/Desktop/Pipeline/simulation/modelsim/branch_predictor.vht
+} {} {}} C:/Users/Filip/Desktop/Pipeline/simulation/modelsim/branch_predictor.vht {1 {vcom -work work -2002 -explicit {C:\Users\Filip\Desktop\Pipeline\simulation\modelsim\branch_predictor.vht}
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
 -- Loading package TEXTIO
@@ -24,6 +24,23 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package NUMERIC_STD
 -- Compiling entity decoder_32
 -- Compiling architecture decoder_32_arch of decoder_32
+
+} {} {}} C:/Users/Filip/Desktop/Pipeline/custom_types.vhd {1 {vcom -work work -2002 -explicit C:/Users/Filip/Desktop/Pipeline/custom_types.vhd
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling package custom_types
+
+} {} {}} C:/Users/Filip/Desktop/Pipeline/branch_predictor.vhd {1 {vcom -work work -2002 -explicit C:/Users/Filip/Desktop/Pipeline/branch_predictor.vhd
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package custom_types
+-- Compiling entity branch_predictor
+-- Compiling architecture branch_predictor_arch of branch_predictor
 
 } {} {}} C:/Users/Filip/Desktop/Pipeline/PCreg.vhd {1 {vcom -work work_test_pipeline -2002 -explicit C:/Users/Filip/Desktop/Pipeline/PCreg.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012

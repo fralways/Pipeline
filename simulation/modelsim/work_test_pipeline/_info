@@ -4,8 +4,8 @@ K3
 cModel Technology
 dC:\Users\Filip\Desktop\vlsi proj\simulation\modelsim
 Ebranch_predictor
-Z0 w1449692404
-Z1 DPx4 work 12 custom_types 0 22 ]`BmC3?jB4?W^OgQFZjXM3
+Z0 w1449743588
+Z1 DPx4 work 12 custom_types 0 22 gmP@4TCkA2JW@72N8OzK^3
 Z2 DPx4 ieee 11 numeric_std 0 22 O3PF8EB`?j9=z7KT`fn941
 Z3 DPx3 std 6 textio 0 22 5>J:;AW>W0[[dW0I6EN1Q0
 Z4 DPx4 ieee 14 std_logic_1164 0 22 5=aWaoGZSMWIcH0i^f`XF1
@@ -14,25 +14,25 @@ Z6 8C:/Users/Filip/Desktop/Pipeline/branch_predictor.vhd
 Z7 FC:/Users/Filip/Desktop/Pipeline/branch_predictor.vhd
 l0
 L6
-VUgM199WgTM8OEc?<GQc601
+V^oSLzaB;l0VV[U?a;o_Wc3
 Z8 OV;C;10.1d;51
 32
-Z9 !s108 1449692522.598000
+Z9 !s108 1449743755.199000
 Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/Filip/Desktop/Pipeline/branch_predictor.vhd|
 Z11 !s107 C:/Users/Filip/Desktop/Pipeline/branch_predictor.vhd|
 Z12 o-work work -2002 -explicit -O0
 Z13 tExplicit 1
-!s100 94ED8Z[dVhSSfJliQMcXk1
+!s100 U7A_ZUIBmj66>o5`Tl4oN1
 !i10b 1
 Abranch_predictor_arch
 R1
 R2
 R3
 R4
-DEx4 work 16 branch_predictor 0 22 UgM199WgTM8OEc?<GQc601
-l44
-L23
-Vk6T2heQI0Yo2T@PQ5N0Fo3
+DEx4 work 16 branch_predictor 0 22 ^oSLzaB;l0VV[U?a;o_Wc3
+l46
+L25
+ViU:4V3:l<9XQR76[hFmOl2
 R8
 32
 R9
@@ -40,15 +40,15 @@ R10
 R11
 R12
 R13
-!s100 8njiNd@<nN[iLA7el0FVM0
+!s100 FzKkkccIJIoPMWHgdiYAc1
 !i10b 1
 Ebranch_predictor_vhd_tst
-Z14 w1449692687
+Z14 w1449743951
 R3
 R4
 R5
-Z15 8C:/Users/Filip/Desktop/Pipeline/simulation/modelsim/branch_predictor.vht
-Z16 FC:/Users/Filip/Desktop/Pipeline/simulation/modelsim/branch_predictor.vht
+Z15 8C:\Users\Filip\Desktop\Pipeline\simulation\modelsim\branch_predictor.vht
+Z16 FC:\Users\Filip\Desktop\Pipeline\simulation\modelsim\branch_predictor.vht
 l0
 L30
 VCanRo>7g0JgNXd7M6n9ld1
@@ -56,19 +56,19 @@ VCanRo>7g0JgNXd7M6n9ld1
 R8
 32
 !i10b 1
-Z17 !s108 1449692692.651000
-Z18 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/Filip/Desktop/Pipeline/simulation/modelsim/branch_predictor.vht|
-Z19 !s107 C:/Users/Filip/Desktop/Pipeline/simulation/modelsim/branch_predictor.vht|
+Z17 !s108 1449743954.235000
+Z18 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:\Users\Filip\Desktop\Pipeline\simulation\modelsim\branch_predictor.vht|
+Z19 !s107 C:\Users\Filip\Desktop\Pipeline\simulation\modelsim\branch_predictor.vht|
 R12
 R13
 Abranch_predictor_arch
 R3
 R4
 Z20 DEx4 work 24 branch_predictor_vhd_tst 0 22 CanRo>7g0JgNXd7M6n9ld1
-l57
+l61
 L32
-VcooZX]Y18J5QHEPZ:4S<13
-!s100 R;P9VID`7o`aQLo@6PWC[1
+V=3h?TZ^;3CjSi?KYkR>Oe3
+!s100 B]mT^Thb<;o?;UNjQLK[Q1
 R8
 32
 !i10b 1
@@ -154,20 +154,20 @@ R13
 Pcustom_types
 R3
 R4
-w1449691094
+w1449693193
 R5
 8C:/Users/Filip/Desktop/Pipeline/custom_types.vhd
 FC:/Users/Filip/Desktop/Pipeline/custom_types.vhd
 l0
 L4
-V]`BmC3?jB4?W^OgQFZjXM3
+VgmP@4TCkA2JW@72N8OzK^3
 R8
 32
 R12
 R13
-!s100 9RT5URiMh]5@ikVhZODG83
+!s100 WYVL8jHocOZP>[[RF3[zI1
 !i10b 1
-!s108 1449692519.240000
+!s108 1449743105.485000
 !s90 -reportprogress|300|-work|work|-2002|-explicit|C:/Users/Filip/Desktop/Pipeline/custom_types.vhd|
 !s107 C:/Users/Filip/Desktop/Pipeline/custom_types.vhd|
 Edecoder_32

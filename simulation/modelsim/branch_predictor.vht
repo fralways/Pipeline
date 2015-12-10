@@ -33,7 +33,9 @@ ARCHITECTURE branch_predictor_arch OF branch_predictor_vhd_tst IS
 -- constants                                                 
 -- signals                                                   
 SIGNAL clk : STD_LOGIC;
+SIGNAL reset : STD_LOGIC;
 SIGNAL get_prediction : STD_LOGIC;
+SIGNAL prediction_entry_pc : std_logic_vector(31 downto 0);
 SIGNAL prediction : STD_LOGIC;
 SIGNAL prediction_address : STD_LOGIC_VECTOR(31 DOWNTO 0);
 SIGNAL prediction_was_success : STD_LOGIC;
@@ -44,7 +46,9 @@ SIGNAL is_prediction_entry_found : STD_LOGIC;
 COMPONENT branch_predictor
 	PORT (
 	clk : IN STD_LOGIC;
+	reset : IN STD_LOGIC;
 	get_prediction : IN STD_LOGIC;
+	prediction_entry_pc : in std_logic_vector(31 downto 0);
 	prediction : OUT STD_LOGIC;
 	is_prediction_entry_found : OUT STD_LOGIC;
 	prediction_address : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
@@ -59,7 +63,9 @@ BEGIN
 	PORT MAP (
 -- list connections between master ports and signals
 	clk => clk,
+	reset => reset,
 	get_prediction => get_prediction,
+	prediction_entry_pc => prediction_entry_pc,
 	prediction => prediction,
 	prediction_address => prediction_address,
 	prediction_was_success => prediction_was_success,
@@ -84,24 +90,25 @@ PROCESS
 BEGIN                                                         
 
 	get_prediction <= '1';
-	update_entry_pc <= (others => '1');
+	prediction_entry_pc <= (others => '1');
 	wait for 10 ns;
 	get_prediction <= '1';
-	update_entry_pc <= (others => '0');
+	prediction_entry_pc <= (others => '0');
 	wait for 10 ns;
-	get_prediction <= '0';
+	get_prediction <= '1';
 	update_entry <= '1';
+	prediction_entry_pc <= (others => '0');
 	update_entry_pc <= (others => '1');
 	update_entry_jmp_address <= (others => '1');
 	prediction_was_success <= '0';
 	wait for 10 ns;
 	update_entry <= '0';
 	get_prediction <= '1';
-	update_entry_pc <= (others => '1');
+	prediction_entry_pc <= (others => '1');
 	wait for 10 ns;
 	update_entry <= '0';
 	get_prediction <= '1';
-	update_entry_pc <= (others => '0');
+	prediction_entry_pc <= (others => '0');
 
 WAIT;                                                        
 END PROCESS;                                          
