@@ -60,6 +60,10 @@ begin
   reset<='1';
   wait for 15 ns;
   reset<='0';
+  wait for 28 ns;
+  reset<='1';
+  wait for 22 ns;
+  reset<='0';
   wait;                                       
 end process;
 END processor_arch;

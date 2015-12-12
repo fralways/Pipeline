@@ -58,7 +58,11 @@ END PROCESS;
 PROCESS
 begin
   reset<='1';
-  wait for 20 ns;
+  wait for 15 ns;
+  reset<='0';
+  wait for 28 ns;
+  reset<='1';
+  wait for 18 ns;
   reset<='0';
   wait;                                       
 end process;

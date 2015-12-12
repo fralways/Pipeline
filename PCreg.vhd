@@ -23,7 +23,7 @@ process (clk, reset)
 begin
 
 	if (reset = '1') then
-		data := (others => '0');
+		data := (others=>'0');
 	elsif (rising_edge(clk)) then
 		if (load = '1') then
 			data := data_in;

@@ -1,5 +1,5 @@
 Analysis & Synthesis report for pipeline
-Thu Dec 10 14:50:25 2015
+Sat Dec 12 17:54:01 2015
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -14,11 +14,12 @@ Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edit
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
   8. General Register Statistics
-  9. Port Connectivity Checks: "fetch:FETCH_PHASE"
+  9. Port Connectivity Checks: "stick:IF_ID_stick"
  10. Port Connectivity Checks: "PCreg:PC_REG"
  11. Port Connectivity Checks: "Cache:CACHE_ENTITY"
- 12. Elapsed Time Per Partition
- 13. Analysis & Synthesis Messages
+ 12. Port Connectivity Checks: "MX_4_1:PC_MUX"
+ 13. Elapsed Time Per Partition
+ 14. Analysis & Synthesis Messages
 
 
 
@@ -44,7 +45,7 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Thu Dec 10 14:50:25 2015           ;
+; Analysis & Synthesis Status        ; Successful - Sat Dec 12 17:54:01 2015           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; pipeline                                        ;
 ; Top-level Entity Name              ; processor                                       ;
@@ -168,6 +169,9 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; branch_predictor.vhd             ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/branch_predictor.vhd ;         ;
 ; fetch.vhd                        ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/fetch.vhd            ;         ;
 ; processor.vhd                    ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/processor.vhd        ;         ;
+; stick.vhd                        ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/stick.vhd            ;         ;
+; control_unit.vhd                 ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/control_unit.vhd     ;         ;
+; MX_4_1.vhd                       ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/MX_4_1.vhd           ;         ;
 +----------------------------------+-----------------+-----------------+------------------------------------------------------+---------+
 
 
@@ -221,17 +225,15 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "fetch:FETCH_PHASE"                                                                                       ;
-+---------------------------+--------+----------+-------------------------------------------------------------------------------------+
-; Port                      ; Type   ; Severity ; Details                                                                             ;
-+---------------------------+--------+----------+-------------------------------------------------------------------------------------+
-; pc_out                    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; pc_plus                   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; is_prediction_entry_found ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; prediction                ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; prediction_address        ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+---------------------------+--------+----------+-------------------------------------------------------------------------------------+
++-------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "stick:IF_ID_stick"                                                                                 ;
++---------------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port                ; Type   ; Severity ; Details                                                                             ;
++---------------------+--------+----------+-------------------------------------------------------------------------------------+
+; signals_in.IF_stall ; Input  ; Info     ; Stuck at GND                                                                        ;
+; signals_in.IF_flush ; Input  ; Info     ; Stuck at GND                                                                        ;
+; signals_out         ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++---------------------+--------+----------+-------------------------------------------------------------------------------------+
 
 
 +------------------------------------------+
@@ -252,6 +254,15 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------+-------+----------+------------------+
 
 
++-------------------------------------------------+
+; Port Connectivity Checks: "MX_4_1:PC_MUX"       ;
++---------------+-------+----------+--------------+
+; Port          ; Type  ; Severity ; Details      ;
++---------------+-------+----------+--------------+
+; data_in[2..3] ; Input ; Info     ; Stuck at GND ;
++---------------+-------+----------+--------------+
+
+
 +-------------------------------+
 ; Elapsed Time Per Partition    ;
 +----------------+--------------+
@@ -267,7 +278,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Thu Dec 10 14:50:24 2015
+    Info: Processing started: Sat Dec 12 17:53:59 2015
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off pipeline -c pipeline
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 2 design units, including 1 entities, in source file pcreg.vhd
@@ -299,19 +310,24 @@ Info (12021): Found 2 design units, including 1 entities, in source file fetch.v
 Info (12021): Found 2 design units, including 1 entities, in source file processor.vhd
     Info (12022): Found design unit 1: processor-processor_arch
     Info (12023): Found entity 1: processor
+Info (12021): Found 2 design units, including 1 entities, in source file stick.vhd
+    Info (12022): Found design unit 1: stick-stick_arch
+    Info (12023): Found entity 1: stick
+Info (12021): Found 2 design units, including 1 entities, in source file control_unit.vhd
+    Info (12022): Found design unit 1: control_unit-control_unit_arch
+    Info (12023): Found entity 1: control_unit
+Info (12021): Found 2 design units, including 1 entities, in source file mx_4_1.vhd
+    Info (12022): Found design unit 1: MX_4_1-MX_4_1_arch
+    Info (12023): Found entity 1: MX_4_1
 Info (12127): Elaborating entity "processor" for the top level hierarchy
-Warning (10541): VHDL Signal Declaration warning at processor.vhd(64): used implicit default value for signal "CACHE_rd_data" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10541): VHDL Signal Declaration warning at processor.vhd(64): used implicit default value for signal "CACHE_wr" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10541): VHDL Signal Declaration warning at processor.vhd(65): used implicit default value for signal "CACHE_data_in" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10541): VHDL Signal Declaration warning at processor.vhd(66): used implicit default value for signal "FETCH_update_entry" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10541): VHDL Signal Declaration warning at processor.vhd(66): used implicit default value for signal "FETCH_prediction_was_success" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10036): Verilog HDL or VHDL warning at processor.vhd(66): object "FETCH_is_prediction_entry_found" assigned a value but never read
-Warning (10036): Verilog HDL or VHDL warning at processor.vhd(66): object "FETCH_prediction" assigned a value but never read
-Warning (10541): VHDL Signal Declaration warning at processor.vhd(67): used implicit default value for signal "FETCH_update_entry_pc" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10541): VHDL Signal Declaration warning at processor.vhd(67): used implicit default value for signal "FETCH_update_entry_jmp_address" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10036): Verilog HDL or VHDL warning at processor.vhd(67): object "FETCH_pc_out" assigned a value but never read
-Warning (10036): Verilog HDL or VHDL warning at processor.vhd(67): object "FETCH_pc_plus" assigned a value but never read
-Warning (10036): Verilog HDL or VHDL warning at processor.vhd(67): object "FETCH_prediction_address" assigned a value but never read
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(95): used implicit default value for signal "CACHE_rd_data" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(95): used implicit default value for signal "CACHE_wr" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(96): used implicit default value for signal "CACHE_data_in" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(97): used implicit default value for signal "FETCH_update_entry" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(97): used implicit default value for signal "FETCH_prediction_was_success" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(98): used implicit default value for signal "FETCH_update_entry_pc" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(98): used implicit default value for signal "FETCH_update_entry_jmp_address" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Info (12128): Elaborating entity "MX_4_1" for hierarchy "MX_4_1:PC_MUX"
 Info (12128): Elaborating entity "Cache" for hierarchy "Cache:CACHE_ENTITY"
 Warning (10036): Verilog HDL or VHDL warning at Cache.vhd(27): object "whitespace" assigned a value but never read
 Warning (10542): VHDL Variable Declaration warning at syn_textio.vhd(213): used initial value expression for variable "m" because variable was never assigned a value
@@ -320,6 +336,8 @@ Warning (10542): VHDL Variable Declaration warning at syn_textio.vhd(378): used 
 Info (12128): Elaborating entity "PCreg" for hierarchy "PCreg:PC_REG"
 Info (12128): Elaborating entity "fetch" for hierarchy "fetch:FETCH_PHASE"
 Info (12128): Elaborating entity "branch_predictor" for hierarchy "fetch:FETCH_PHASE|branch_predictor:PREDICTOR"
+Info (12128): Elaborating entity "stick" for hierarchy "stick:IF_ID_stick"
+Info (12128): Elaborating entity "control_unit" for hierarchy "control_unit:CU"
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
 Warning (21074): Design contains 2 input pin(s) that do not drive logic
@@ -328,10 +346,10 @@ Warning (21074): Design contains 2 input pin(s) that do not drive logic
 Info (21057): Implemented 2 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 2 input pins
     Info (21059): Implemented 0 output pins
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 20 warnings
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 15 warnings
     Info: Peak virtual memory: 491 megabytes
-    Info: Processing ended: Thu Dec 10 14:50:25 2015
-    Info: Elapsed time: 00:00:01
+    Info: Processing ended: Sat Dec 12 17:54:01 2015
+    Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:02
 
 

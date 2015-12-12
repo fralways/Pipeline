@@ -52,16 +52,16 @@ begin
 		variable found_entry_index : integer;
 		variable prediction_value : std_logic;
 		variable prediction_number : integer;
-		variable head : integer range 0 to 8 := 0;
+		variable head : integer range 0 to 32 := 0;
 	begin
 		if (reset = '1') then
-			for i in 0 to 7 loop
+			for i in 0 to 31 loop
 				branch_entries(i).v <= '0';
 			end loop;
 		elsif (rising_edge(clk)) then
 			if (update_entry = '1') then
 				found_entry := false;
-				for i in 0 to 7 loop
+				for i in 0 to 31 loop
 					if (branch_entries(i).v = '1') then
 						if (update_entry_pc = branch_entries(i).pc_value) then
 							found_entry := true;
@@ -84,12 +84,30 @@ begin
 					end if;
 					branch_entries(found_entry_index).prediction_value <= std_logic_vector(to_unsigned(prediction_number, branch_entries(found_entry_index).prediction_value'length));					
 					branch_entries(found_entry_index).jump_address <= update_entry_jmp_address;
+				else
+					prediction_number :=  2;
+					if (prediction_was_success = '1') then						
+							prediction_number := 3;
+					else
+							prediction_number := 1;
+					end if;
+					branch_entries(head) <=
+									(
+										v => '1',
+										pc_value => update_entry_pc, 
+										prediction_value => std_logic_vector(to_unsigned(prediction_number, 2)),
+										jump_address => update_entry_jmp_address
+									);
+					head := head + 1;
+					if (head > 31) then
+						head := 0;
+					end if;
 				end if;
 			end if;
 			if (get_prediction = '1') then
 				is_prediction_entry_found <= '0';
 				found_entry := false;
-				for i in 0 to 7 loop
+				for i in 0 to 31 loop
 					if (branch_entries(i).v = '1') then
 						if (prediction_entry_pc = branch_entries(i).pc_value) then
 							found_entry := true;
@@ -104,17 +122,7 @@ begin
 					prediction_address <= branch_entries(found_entry_index).jump_address;
 					is_prediction_entry_found <= '1';
 				else
-					branch_entries(head) <=
-									(
-										v => '1',
-										pc_value => prediction_entry_pc, 
-										prediction_value => "10",
-										jump_address => (others => '0')
-									);
-					head := head + 1;
-					if (head > 7) then
-						head := 0;
-					end if;
+					is_prediction_entry_found <= '0';
 				end if;
 			end if;	
 		end if;
