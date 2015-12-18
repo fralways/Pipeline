@@ -43,6 +43,16 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling entity decoder_32
 -- Compiling architecture decoder_32_arch of decoder_32
 
+} {} {}} C:/Users/Filip/Desktop/Pipeline/MX_4_1.vhd {1 {vcom -work work -2002 -explicit C:/Users/Filip/Desktop/Pipeline/MX_4_1.vhd
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package custom_types
+-- Compiling entity MX_4_1
+-- Compiling architecture MX_4_1_arch of MX_4_1
+
 } {} {}} C:/Users/Filip/Desktop/Pipeline/PCreg.vhd {1 {vcom -work work_test_pipeline -2002 -explicit C:/Users/Filip/Desktop/Pipeline/PCreg.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
@@ -70,6 +80,15 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling entity Cache_vhd_tst
 -- Compiling architecture Cache_arch of Cache_vhd_tst
 
+} {} {}} C:/Users/Filip/Desktop/Pipeline/alu.vhd {1 {vcom -work work -2002 -explicit C:/Users/Filip/Desktop/Pipeline/alu.vhd
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling entity alu
+-- Compiling architecture alu_arch of alu
+
 } {} {}} C:/Users/Filip/Desktop/Pipeline/simulation/modelsim/reg_file.vht {1 {vcom -work work -2002 -explicit C:/Users/Filip/Desktop/Pipeline/simulation/modelsim/reg_file.vht
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
@@ -88,6 +107,14 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling entity reg_file
 -- Compiling architecture reg_file_arch of reg_file
 
+} {} {}} C:/Users/Filip/Desktop/Pipeline/reg.vhd {1 {vcom -work work -2002 -explicit C:/Users/Filip/Desktop/Pipeline/reg.vhd
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity reg
+-- Compiling architecture reg_arch of reg
+
 } {} {}} C:/Users/Filip/Desktop/Pipeline/simulation/modelsim/PCreg.vht {1 {vcom -work work_test_pipeline -2002 -explicit C:/Users/Filip/Desktop/Pipeline/simulation/modelsim/PCreg.vht
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
@@ -96,13 +123,31 @@ Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Compiling entity PCreg_vhd_tst
 -- Compiling architecture PCreg_arch of PCreg_vhd_tst
 
-} {} {}} C:/Users/Filip/Desktop/Pipeline/reg.vhd {1 {vcom -work work -2002 -explicit C:/Users/Filip/Desktop/Pipeline/reg.vhd
+} {} {}} C:/Users/Filip/Desktop/Pipeline/stick.vhd {1 {vcom -work work -2002 -explicit C:/Users/Filip/Desktop/Pipeline/stick.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
 -- Loading package STANDARD
 -- Loading package TEXTIO
 -- Loading package std_logic_1164
--- Compiling entity reg
--- Compiling architecture reg_arch of reg
+-- Loading package custom_types
+-- Compiling entity stick
+-- Compiling architecture stick_arch of stick
+
+} {} {}} C:/Users/Filip/Desktop/Pipeline/simulation/modelsim/alu.vht {1 {vcom -work work -2002 -explicit C:/Users/Filip/Desktop/Pipeline/simulation/modelsim/alu.vht
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity alu_vhd_tst
+-- Compiling architecture alu_arch of alu_vhd_tst
+
+} {} {}} C:/Users/Filip/Desktop/Pipeline/processor.vhd {1 {vcom -work work -2002 -explicit C:/Users/Filip/Desktop/Pipeline/processor.vhd
+Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package custom_types
+-- Compiling entity processor
+-- Compiling architecture processor_arch of processor
 
 } {} {}} C:/Users/Filip/Desktop/Pipeline/MX_32_1.vhd {1 {vcom -work work -2002 -explicit C:/Users/Filip/Desktop/Pipeline/MX_32_1.vhd
 Model Technology ModelSim ALTERA vcom 10.1d Compiler 2012.11 Nov  2 2012

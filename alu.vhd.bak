@@ -1,0 +1,82 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity alu is
+port
+(
+	mode : in std_logic_vector(5 downto 0);
+	A : in std_logic_vector(31 downto 0);
+	B : in std_logic_vector(31 downto 0);
+	
+	output : out std_logic_vector(31 downto 0);
+);
+end alu;
+
+architecture alu_arch of alu is
+begin
+	process (mode, A, B)
+	begin
+		case mode is
+				when "00000" => --AND
+					data_out<= data_in1 and data_in2;
+				when "00001" => --SUB U
+					data_out<= std_logic_vector((unsigned(data_in1) - unsigned(data_in2)));
+				when "00010" => --ADD U
+					data_out<= std_logic_vector((unsigned(data_in1) + unsigned(data_in2)));
+				when "00011" => --ADD U CARRY
+					res:= std_logic_vector((unsigned("0"&data_in1) + unsigned("0"&data_in2)));
+					carry<=res(alu_width);
+					if (res(alu_width) = '1') then
+						res:=std_logic_vector(unsigned(res) + 1);
+					end if;
+					data_out<= res(alu_width-1 downto 0);
+				when "00100" => --SUB U CARRY
+					res:= std_logic_vector((unsigned("0"&data_in1) - unsigned(data_in2)));
+					carry<=res(alu_width);
+					if (res(alu_width) = '1') then
+						res:=std_logic_vector(unsigned(res) + 1);
+					end if;
+					data_out<= res(alu_width-1 downto 0);
+				when "00101" => --CMP S
+				when "00110" => --SUB S
+					res:= std_logic_vector((signed("0"&data_in1) - signed(data_in2)));
+					carry<=res(alu_width);
+					data_out<= res(alu_width-1 downto 0);
+				when "00111" => --ADD S
+					res:= std_logic_vector((signed("0"&data_in1) + signed(data_in2)));
+					carry<=res(alu_width);
+					data_out<= res(alu_width-1 downto 0);
+				when "01000" => --ADD S CARRY
+					res:= std_logic_vector((signed("0"&data_in1) + signed(data_in2)));
+					carry<=res(alu_width);
+					if (res(alu_width) = '1') then
+						res:=std_logic_vector(signed(res) + 1);
+					end if;
+					data_out<= res(alu_width-1 downto 0);
+				when "01001" => --SUB S CARRY
+					res:= std_logic_vector((signed("0"&data_in1) - signed(data_in2)));
+					carry<=res(alu_width);
+					if (res(alu_width) = '1') then
+						res:=std_logic_vector(signed(res) + 1);
+					end if;
+					data_out<= res(alu_width-1 downto 0);
+				when "01010" => --MOV
+					data_out <= data_in1;
+				when "01011" => -- NOT
+					data_out <= not data_in2;
+				when "01100" => --sl
+					data_out <= data_in1(alu_width-2 downto 0) & "0";
+				when "01101" => --sr
+					data_out <= "0"&data_in1(alu_width-1 downto 1);
+				when "01110" => --asr
+					data_out <= data_in1(alu_width-1)&data_in1(alu_width-1 downto 1);
+				when "01111" => --mov  neoznaceno
+					data_out <= data_in2;
+				when "10000" => --mov oznaceno
+					data_out <= data_in2;
+				when others =>
+					data_out <= (others=>'X');
+			end case;
+	end process;
+end alu_arch;

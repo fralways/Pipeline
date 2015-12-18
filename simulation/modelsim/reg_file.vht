@@ -33,16 +33,24 @@ ARCHITECTURE reg_file_arch OF reg_file_vhd_tst IS
 -- constants                                                 
 -- signals                                                   
 SIGNAL clk : STD_LOGIC;
-SIGNAL cs : STD_LOGIC_VECTOR(4 DOWNTO 0);
+SIGNAL dst : STD_LOGIC_VECTOR(4 DOWNTO 0);
+SIGNAL src1 : STD_LOGIC_VECTOR(4 DOWNTO 0);
+SIGNAL src2 : STD_LOGIC_VECTOR(4 DOWNTO 0);
+SIGNAL reset : STD_LOGIC;
 SIGNAL data_in : STD_LOGIC_VECTOR(31 DOWNTO 0);
-SIGNAL data_out : STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL data_out1 : STD_LOGIC_VECTOR(31 DOWNTO 0);
+SIGNAL data_out2 : STD_LOGIC_VECTOR(31 DOWNTO 0);
 SIGNAL wr : STD_LOGIC;
 COMPONENT reg_file
 	PORT (
 	clk : IN STD_LOGIC;
-	cs : IN STD_LOGIC_VECTOR(4 DOWNTO 0);
+	dst : IN STD_LOGIC_VECTOR(4 DOWNTO 0);
+	src1 : IN STD_LOGIC_VECTOR(4 DOWNTO 0);
+	src2 : IN STD_LOGIC_VECTOR(4 DOWNTO 0);
+	reset : IN STD_LOGIC;
 	data_in : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
-	data_out : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+	data_out1 : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
+	data_out2 : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
 	wr : IN STD_LOGIC
 	);
 END COMPONENT;
@@ -51,9 +59,13 @@ BEGIN
 	PORT MAP (
 -- list connections between master ports and signals
 	clk => clk,
-	cs => cs,
+	dst => dst,
+	src1 => src1,
+	src2 => src2,
+	reset => reset,
 	data_in => data_in,
-	data_out => data_out,
+	data_out1 => data_out1,
+	data_out2 => data_out2,
 	wr => wr
 	);
 	
@@ -68,12 +80,17 @@ END PROCESS;
 PROCESS
 
 BEGIN                                                         
-	cs <= "00001";
+	wait for 1 ns;
+	dst <= "00001";
 	wr <= '1';
 	data_in <= (others=>'0');
 	
 	wait for 10 ns;
-	cs <= "00000";
+	dst <= "00000";
+	wr <= '1';
+	data_in <= (31 downto 2 => '0',
+              	1 downto 0 => '1');
+	src1 <= "00001";
 	
 	WAIT;                                                        
 END PROCESS;                                          

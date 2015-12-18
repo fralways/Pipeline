@@ -1,5 +1,5 @@
 EDA Netlist Writer report for pipeline
-Thu Dec 10 12:48:28 2015
+Fri Dec 18 13:57:51 2015
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -34,9 +34,9 @@ applicable agreement for further details.
 +-------------------------------------------------------------------+
 ; EDA Netlist Writer Summary                                        ;
 +---------------------------+---------------------------------------+
-; EDA Netlist Writer Status ; Successful - Thu Dec 10 12:48:28 2015 ;
+; EDA Netlist Writer Status ; Successful - Fri Dec 18 13:57:51 2015 ;
 ; Revision Name             ; pipeline                              ;
-; Top-level Entity Name     ; processor                             ;
+; Top-level Entity Name     ; alu                                   ;
 ; Family                    ; Cyclone II                            ;
 +---------------------------+---------------------------------------+
 
@@ -47,13 +47,13 @@ applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit EDA Netlist Writer
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Thu Dec 10 12:48:27 2015
+    Info: Processing started: Fri Dec 18 13:57:50 2015
 Info: Command: quartus_eda --read_settings_files=on --write_settings_files=off pipeline -c pipeline --gen_testbench
 Info (119006): Selected device EP2C70F896I8 for design "pipeline"
-Info (201002): Generated VHDL Test Bench File C:/Users/Filip/Desktop/Pipeline/simulation/modelsim/processor.vht for simulation
+Info (201002): Generated VHDL Test Bench File C:/Users/Filip/Desktop/Pipeline/simulation/modelsim/alu.vht for simulation
 Info: Quartus II 64-Bit EDA Netlist Writer was successful. 0 errors, 0 warnings
     Info: Peak virtual memory: 383 megabytes
-    Info: Processing ended: Thu Dec 10 12:48:28 2015
+    Info: Processing ended: Fri Dec 18 13:57:51 2015
     Info: Elapsed time: 00:00:01
     Info: Total CPU time (on all processors): 00:00:00
 

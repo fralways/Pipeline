@@ -3,8 +3,9 @@ use ieee.std_logic_1164.all;
 
 package custom_types is
 
-	type array_of_reg4 is array(0 to 3) of std_logic_vector(31 downto 0);
 	type array_of_reg is array(0 to 31) of std_logic_vector(31 downto 0);
+	type array_of_reg4 is array(0 to 3) of std_logic_vector(31 downto 0);
+	type array_of_reg2 is array(0 to 1) of std_logic_vector(31 downto 0);
 	
 	type branch_predictor_entry is record
 		v : std_logic;
