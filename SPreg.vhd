@@ -1,0 +1,42 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+
+entity SPreg is
+	port
+	(
+		clk : in std_logic;
+		load : in std_logic;
+		inc : in std_logic;
+		dec : in std_logic;
+		reset : in std_logic;
+		data_in : in std_logic_vector(31 downto 0);
+		
+		data_out : out std_logic_vector(31 downto 0)
+	);
+end SPreg;
+
+architecture spreg_arch of SPreg is
+begin
+
+process (clk, reset)
+	variable data : std_logic_vector(31 downto 0);
+begin
+
+	if (reset = '1') then
+		data := (others => '1');
+	elsif (rising_edge(clk)) then
+		if (load = '1') then
+			data := data_in;
+		elsif (inc = '1') then
+			data := std_logic_vector(to_unsigned(to_integer(unsigned(data))+1, data_out'length));
+		elsif (dec = '1') then
+			data := std_logic_vector(to_unsigned(to_integer(unsigned(data))-1, data_out'length));
+		end if;
+	end if;
+	
+	data_out <= data;
+	
+end process;
+
+end spreg_arch;

@@ -1,5 +1,5 @@
 Analysis & Synthesis report for pipeline
-Fri Dec 18 16:58:54 2015
+Sat Dec 19 19:53:06 2015
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -14,9 +14,11 @@ Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edit
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
   8. General Register Statistics
-  9. Multiplexer Restructuring Statistics (Restructuring Performed)
- 10. Elapsed Time Per Partition
- 11. Analysis & Synthesis Messages
+  9. Inverted Register Statistics
+ 10. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 11. Port Connectivity Checks: "SPreg:SP_REG"
+ 12. Elapsed Time Per Partition
+ 13. Analysis & Synthesis Messages
 
 
 
@@ -42,16 +44,16 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Fri Dec 18 16:58:53 2015           ;
+; Analysis & Synthesis Status        ; Successful - Sat Dec 19 19:53:06 2015           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; pipeline                                        ;
 ; Top-level Entity Name              ; execute                                         ;
 ; Family                             ; Cyclone II                                      ;
-; Total logic elements               ; 1,024                                           ;
-;     Total combinational functions  ; 1,024                                           ;
-;     Dedicated logic registers      ; 0                                               ;
-; Total registers                    ; 0                                               ;
-; Total pins                         ; 171                                             ;
+; Total logic elements               ; 1,034                                           ;
+;     Total combinational functions  ; 1,034                                           ;
+;     Dedicated logic registers      ; 32                                              ;
+; Total registers                    ; 32                                              ;
+; Total pins                         ; 261                                             ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 0                                               ;
 ; Embedded Multiplier 9-bit elements ; 0                                               ;
@@ -161,9 +163,11 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                     ; Library ;
 +----------------------------------+-----------------+-----------------+--------------------------------------------------+---------+
 ; custom_types.vhd                 ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/custom_types.vhd ;         ;
+; MX_4_1.vhd                       ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/MX_4_1.vhd       ;         ;
 ; alu.vhd                          ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/alu.vhd          ;         ;
 ; execute.vhd                      ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/execute.vhd      ;         ;
 ; MX_2_1.vhd                       ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/MX_2_1.vhd       ;         ;
+; SPreg.vhd                        ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/SPreg.vhd        ;         ;
 +----------------------------------+-----------------+-----------------+--------------------------------------------------+---------+
 
 
@@ -172,41 +176,41 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------+----------------------------+
 ; Resource                                    ; Usage                      ;
 +---------------------------------------------+----------------------------+
-; Estimated Total logic elements              ; 1,024                      ;
+; Estimated Total logic elements              ; 1,034                      ;
 ;                                             ;                            ;
-; Total combinational functions               ; 1024                       ;
+; Total combinational functions               ; 1034                       ;
 ; Logic element usage by number of LUT inputs ;                            ;
-;     -- 4 input functions                    ; 575                        ;
-;     -- 3 input functions                    ; 398                        ;
-;     -- <=2 input functions                  ; 51                         ;
+;     -- 4 input functions                    ; 573                        ;
+;     -- 3 input functions                    ; 424                        ;
+;     -- <=2 input functions                  ; 37                         ;
 ;                                             ;                            ;
 ; Logic elements by mode                      ;                            ;
-;     -- normal mode                          ; 869                        ;
-;     -- arithmetic mode                      ; 155                        ;
+;     -- normal mode                          ; 878                        ;
+;     -- arithmetic mode                      ; 156                        ;
 ;                                             ;                            ;
-; Total registers                             ; 0                          ;
-;     -- Dedicated logic registers            ; 0                          ;
+; Total registers                             ; 32                         ;
+;     -- Dedicated logic registers            ; 32                         ;
 ;     -- I/O registers                        ; 0                          ;
 ;                                             ;                            ;
-; I/O pins                                    ; 171                        ;
+; I/O pins                                    ; 261                        ;
 ; Embedded Multiplier 9-bit elements          ; 0                          ;
-; Maximum fan-out node                        ; MX_2_1:B_MUX|data_out[3]~3 ;
-; Maximum fan-out                             ; 138                        ;
-; Total fan-out                               ; 3634                       ;
-; Average fan-out                             ; 3.04                       ;
+; Maximum fan-out node                        ; MX_2_1:B_MUX|data_out[0]~0 ;
+; Maximum fan-out                             ; 100                        ;
+; Total fan-out                               ; 3846                       ;
+; Average fan-out                             ; 2.90                       ;
 +---------------------------------------------+----------------------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                ;
-+----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------+--------------+
-; Compilation Hierarchy Node ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name        ; Library Name ;
-+----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------+--------------+
-; |execute                   ; 1024 (164)        ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 171  ; 0            ; |execute                   ; work         ;
-;    |MX_2_1:B_MUX|          ; 32 (32)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |execute|MX_2_1:B_MUX      ; work         ;
-;    |MX_2_1:OUTPUT_MUX|     ; 231 (231)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |execute|MX_2_1:OUTPUT_MUX ; work         ;
-;    |alu:ALU_ENTITY|        ; 597 (597)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |execute|alu:ALU_ENTITY    ; work         ;
-+----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+----------------------------+--------------+
++---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                             ;
++----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------+--------------+
+; Compilation Hierarchy Node ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name     ; Library Name ;
++----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------+--------------+
+; |execute                   ; 1034 (130)        ; 32 (0)       ; 0           ; 0            ; 0       ; 0         ; 261  ; 0            ; |execute                ; work         ;
+;    |MX_2_1:B_MUX|          ; 32 (32)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |execute|MX_2_1:B_MUX   ; work         ;
+;    |SPreg:SP_REG|          ; 33 (33)           ; 32 (32)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |execute|SPreg:SP_REG   ; work         ;
+;    |alu:ALU_ENTITY|        ; 839 (839)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |execute|alu:ALU_ENTITY ; work         ;
++----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
@@ -215,24 +219,81 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 0     ;
+; Total registers                              ; 32    ;
 ; Number of registers using Synchronous Clear  ; 0     ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 0     ;
+; Number of registers using Asynchronous Clear ; 32    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Clock Enable       ; 32    ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                        ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output              ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------+
-; 34:1               ; 14 bits   ; 308 LEs       ; 168 LEs              ; 140 LEs                ; No         ; |execute|MX_2_1:OUTPUT_MUX|data_out[4]  ;
-; 34:1               ; 14 bits   ; 308 LEs       ; 154 LEs              ; 154 LEs                ; No         ; |execute|MX_2_1:OUTPUT_MUX|data_out[30] ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+-----------------------------------------+
++---------------------------------------------------+
+; Inverted Register Statistics                      ;
++-----------------------------------------+---------+
+; Inverted Register                       ; Fan out ;
++-----------------------------------------+---------+
+; SPreg:SP_REG|data[0]                    ; 2       ;
+; SPreg:SP_REG|data[1]                    ; 2       ;
+; SPreg:SP_REG|data[2]                    ; 2       ;
+; SPreg:SP_REG|data[3]                    ; 2       ;
+; SPreg:SP_REG|data[4]                    ; 2       ;
+; SPreg:SP_REG|data[5]                    ; 2       ;
+; SPreg:SP_REG|data[6]                    ; 2       ;
+; SPreg:SP_REG|data[7]                    ; 2       ;
+; SPreg:SP_REG|data[8]                    ; 2       ;
+; SPreg:SP_REG|data[9]                    ; 2       ;
+; SPreg:SP_REG|data[10]                   ; 2       ;
+; SPreg:SP_REG|data[11]                   ; 2       ;
+; SPreg:SP_REG|data[12]                   ; 2       ;
+; SPreg:SP_REG|data[13]                   ; 2       ;
+; SPreg:SP_REG|data[14]                   ; 2       ;
+; SPreg:SP_REG|data[15]                   ; 2       ;
+; SPreg:SP_REG|data[16]                   ; 2       ;
+; SPreg:SP_REG|data[17]                   ; 2       ;
+; SPreg:SP_REG|data[18]                   ; 2       ;
+; SPreg:SP_REG|data[19]                   ; 2       ;
+; SPreg:SP_REG|data[20]                   ; 2       ;
+; SPreg:SP_REG|data[21]                   ; 2       ;
+; SPreg:SP_REG|data[22]                   ; 2       ;
+; SPreg:SP_REG|data[23]                   ; 2       ;
+; SPreg:SP_REG|data[24]                   ; 2       ;
+; SPreg:SP_REG|data[25]                   ; 2       ;
+; SPreg:SP_REG|data[26]                   ; 2       ;
+; SPreg:SP_REG|data[27]                   ; 2       ;
+; SPreg:SP_REG|data[28]                   ; 2       ;
+; SPreg:SP_REG|data[29]                   ; 2       ;
+; SPreg:SP_REG|data[30]                   ; 2       ;
+; SPreg:SP_REG|data[31]                   ; 1       ;
+; Total number of inverted registers = 32 ;         ;
++-----------------------------------------+---------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                 ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output       ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------+
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |execute|SPreg:SP_REG|data[19]   ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |execute|Add1                    ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; No         ; |execute|Add1                    ;
+; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; No         ; |execute|MX_4_1:OUTPUT_MUX|Mux12 ;
+; 3:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; No         ; |execute|alu:ALU_ENTITY|Add0     ;
+; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; No         ; |execute|alu:ALU_ENTITY|Add0     ;
+; 22:1               ; 14 bits   ; 196 LEs       ; 140 LEs              ; 56 LEs                 ; No         ; |execute|alu:ALU_ENTITY|Mux26    ;
+; 22:1               ; 14 bits   ; 196 LEs       ; 140 LEs              ; 56 LEs                 ; No         ; |execute|alu:ALU_ENTITY|Mux5     ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------+
+
+
++-------------------------------------------+
+; Port Connectivity Checks: "SPreg:SP_REG"  ;
++---------+-------+----------+--------------+
+; Port    ; Type  ; Severity ; Details      ;
++---------+-------+----------+--------------+
+; load    ; Input ; Info     ; Stuck at GND ;
+; data_in ; Input ; Info     ; Stuck at GND ;
++---------+-------+----------+--------------+
 
 
 +-------------------------------+
@@ -240,7 +301,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:10     ;
+; Top            ; 00:00:04     ;
 +----------------+--------------+
 
 
@@ -250,7 +311,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Fri Dec 18 16:58:41 2015
+    Info: Processing started: Sat Dec 19 19:53:00 2015
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off pipeline -c pipeline
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 2 design units, including 1 entities, in source file pcreg.vhd
@@ -300,19 +361,27 @@ Info (12021): Found 2 design units, including 1 entities, in source file execute
 Info (12021): Found 2 design units, including 1 entities, in source file mx_2_1.vhd
     Info (12022): Found design unit 1: MX_2_1-MX_2_1_arch
     Info (12023): Found entity 1: MX_2_1
+Info (12021): Found 2 design units, including 1 entities, in source file spreg.vhd
+    Info (12022): Found design unit 1: SPreg-spreg_arch
+    Info (12023): Found entity 1: SPreg
 Info (12127): Elaborating entity "execute" for the top level hierarchy
+Warning (10541): VHDL Signal Declaration warning at execute.vhd(50): used implicit default value for signal "bad_address" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
 Info (12128): Elaborating entity "MX_2_1" for hierarchy "MX_2_1:B_MUX"
+Info (12128): Elaborating entity "SPreg" for hierarchy "SPreg:SP_REG"
 Info (12128): Elaborating entity "alu" for hierarchy "alu:ALU_ENTITY"
+Info (12128): Elaborating entity "MX_4_1" for hierarchy "MX_4_1:OUTPUT_MUX"
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "bad_address" is stuck at GND
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 1195 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 133 input pins
-    Info (21059): Implemented 38 output pins
-    Info (21061): Implemented 1024 logic cells
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 1 warning
-    Info: Peak virtual memory: 491 megabytes
-    Info: Processing ended: Fri Dec 18 16:58:54 2015
-    Info: Elapsed time: 00:00:13
-    Info: Total CPU time (on all processors): 00:00:12
+Info (21057): Implemented 1295 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 179 input pins
+    Info (21059): Implemented 82 output pins
+    Info (21061): Implemented 1034 logic cells
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 4 warnings
+    Info: Peak virtual memory: 490 megabytes
+    Info: Processing ended: Sat Dec 19 19:53:06 2015
+    Info: Elapsed time: 00:00:06
+    Info: Total CPU time (on all processors): 00:00:06
 
 
