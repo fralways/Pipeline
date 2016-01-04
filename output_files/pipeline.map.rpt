@@ -1,5 +1,5 @@
 Analysis & Synthesis report for pipeline
-Sat Dec 19 19:53:06 2015
+Mon Jan 04 16:04:27 2016
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -14,11 +14,19 @@ Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edit
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
   8. General Register Statistics
-  9. Inverted Register Statistics
- 10. Multiplexer Restructuring Statistics (Restructuring Performed)
- 11. Port Connectivity Checks: "SPreg:SP_REG"
- 12. Elapsed Time Per Partition
- 13. Analysis & Synthesis Messages
+  9. Port Connectivity Checks: "stick_EXE_MEM:EXE_MEM_stick"
+ 10. Port Connectivity Checks: "execute:EXECUTE_PHASE|SPreg:SP_REG"
+ 11. Port Connectivity Checks: "stick_ID_EXE:ID_EXE_stick"
+ 12. Port Connectivity Checks: "decode:DECODE_PHASE|MX_4_1:IMM_MX"
+ 13. Port Connectivity Checks: "decode:DECODE_PHASE|decoder_64:OCDECODER"
+ 14. Port Connectivity Checks: "decode:DECODE_PHASE"
+ 15. Port Connectivity Checks: "control_unit:CU"
+ 16. Port Connectivity Checks: "stick:IF_ID_stick"
+ 17. Port Connectivity Checks: "PCreg:PC_REG"
+ 18. Port Connectivity Checks: "Cache:CACHE_ENTITY"
+ 19. Port Connectivity Checks: "MX_4_1:PC_MUX"
+ 20. Elapsed Time Per Partition
+ 21. Analysis & Synthesis Messages
 
 
 
@@ -44,16 +52,16 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sat Dec 19 19:53:06 2015           ;
+; Analysis & Synthesis Status        ; Successful - Mon Jan 04 16:04:27 2016           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; pipeline                                        ;
-; Top-level Entity Name              ; execute                                         ;
+; Top-level Entity Name              ; processor                                       ;
 ; Family                             ; Cyclone II                                      ;
-; Total logic elements               ; 1,034                                           ;
-;     Total combinational functions  ; 1,034                                           ;
-;     Dedicated logic registers      ; 32                                              ;
-; Total registers                    ; 32                                              ;
-; Total pins                         ; 261                                             ;
+; Total logic elements               ; 0                                               ;
+;     Total combinational functions  ; 0                                               ;
+;     Dedicated logic registers      ; 0                                               ;
+; Total registers                    ; 0                                               ;
+; Total pins                         ; 2                                               ;
 ; Total virtual pins                 ; 0                                               ;
 ; Total memory bits                  ; 0                                               ;
 ; Embedded Multiplier 9-bit elements ; 0                                               ;
@@ -67,7 +75,7 @@ applicable agreement for further details.
 ; Option                                                                     ; Setting            ; Default Value      ;
 +----------------------------------------------------------------------------+--------------------+--------------------+
 ; Device                                                                     ; EP2C70F896I8       ;                    ;
-; Top-level entity name                                                      ; execute            ; pipeline           ;
+; Top-level entity name                                                      ; processor          ; pipeline           ;
 ; Family name                                                                ; Cyclone II         ; Cyclone IV GX      ;
 ; Use smart compilation                                                      ; Off                ; Off                ;
 ; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation ; On                 ; On                 ;
@@ -157,60 +165,73 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------+--------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                            ;
-+----------------------------------+-----------------+-----------------+--------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                     ; Library ;
-+----------------------------------+-----------------+-----------------+--------------------------------------------------+---------+
-; custom_types.vhd                 ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/custom_types.vhd ;         ;
-; MX_4_1.vhd                       ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/MX_4_1.vhd       ;         ;
-; alu.vhd                          ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/alu.vhd          ;         ;
-; execute.vhd                      ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/execute.vhd      ;         ;
-; MX_2_1.vhd                       ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/MX_2_1.vhd       ;         ;
-; SPreg.vhd                        ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/SPreg.vhd        ;         ;
-+----------------------------------+-----------------+-----------------+--------------------------------------------------+---------+
++---------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                ;
++----------------------------------+-----------------+-----------------+------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type       ; File Name with Absolute Path                         ; Library ;
++----------------------------------+-----------------+-----------------+------------------------------------------------------+---------+
+; PCreg.vhd                        ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/PCreg.vhd            ;         ;
+; Cache.vhd                        ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/Cache.vhd            ;         ;
+; reg_file.vhd                     ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/reg_file.vhd         ;         ;
+; reg.vhd                          ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/reg.vhd              ;         ;
+; decoder.vhd                      ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/decoder.vhd          ;         ;
+; MX_32_1.vhd                      ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/MX_32_1.vhd          ;         ;
+; custom_types.vhd                 ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/custom_types.vhd     ;         ;
+; branch_predictor.vhd             ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/branch_predictor.vhd ;         ;
+; fetch.vhd                        ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/fetch.vhd            ;         ;
+; processor.vhd                    ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/processor.vhd        ;         ;
+; stick.vhd                        ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/stick.vhd            ;         ;
+; control_unit.vhd                 ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/control_unit.vhd     ;         ;
+; MX_4_1.vhd                       ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/MX_4_1.vhd           ;         ;
+; alu.vhd                          ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/alu.vhd              ;         ;
+; execute.vhd                      ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/execute.vhd          ;         ;
+; MX_2_1.vhd                       ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/MX_2_1.vhd           ;         ;
+; SPreg.vhd                        ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/SPreg.vhd            ;         ;
+; decoder8.vhd                     ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/decoder8.vhd         ;         ;
+; MX_8_1.vhd                       ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/MX_8_1.vhd           ;         ;
+; RAS.vhd                          ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/RAS.vhd              ;         ;
+; RAS_reg_file.vhd                 ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/RAS_reg_file.vhd     ;         ;
+; RAS_SPreg.vhd                    ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/RAS_SPreg.vhd        ;         ;
+; decode.vhd                       ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/decode.vhd           ;         ;
+; RAS_CLC.vhd                      ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/RAS_CLC.vhd          ;         ;
+; decoder_64.vhd                   ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/decoder_64.vhd       ;         ;
+; stickID_EXE.vhd                  ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/stickID_EXE.vhd      ;         ;
+; stickEXE_MEM.vhd                 ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/stickEXE_MEM.vhd     ;         ;
++----------------------------------+-----------------+-----------------+------------------------------------------------------+---------+
 
 
-+--------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary                              ;
-+---------------------------------------------+----------------------------+
-; Resource                                    ; Usage                      ;
-+---------------------------------------------+----------------------------+
-; Estimated Total logic elements              ; 1,034                      ;
-;                                             ;                            ;
-; Total combinational functions               ; 1034                       ;
-; Logic element usage by number of LUT inputs ;                            ;
-;     -- 4 input functions                    ; 573                        ;
-;     -- 3 input functions                    ; 424                        ;
-;     -- <=2 input functions                  ; 37                         ;
-;                                             ;                            ;
-; Logic elements by mode                      ;                            ;
-;     -- normal mode                          ; 878                        ;
-;     -- arithmetic mode                      ; 156                        ;
-;                                             ;                            ;
-; Total registers                             ; 32                         ;
-;     -- Dedicated logic registers            ; 32                         ;
-;     -- I/O registers                        ; 0                          ;
-;                                             ;                            ;
-; I/O pins                                    ; 261                        ;
-; Embedded Multiplier 9-bit elements          ; 0                          ;
-; Maximum fan-out node                        ; MX_2_1:B_MUX|data_out[0]~0 ;
-; Maximum fan-out                             ; 100                        ;
-; Total fan-out                               ; 3846                       ;
-; Average fan-out                             ; 2.90                       ;
-+---------------------------------------------+----------------------------+
++-----------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary         ;
++---------------------------------------------+-------+
+; Resource                                    ; Usage ;
++---------------------------------------------+-------+
+;                                             ;       ;
+; Total combinational functions               ; 0     ;
+; Logic element usage by number of LUT inputs ;       ;
+;     -- 4 input functions                    ; 0     ;
+;     -- 3 input functions                    ; 0     ;
+;     -- <=2 input functions                  ; 0     ;
+;                                             ;       ;
+; Logic elements by mode                      ;       ;
+;     -- normal mode                          ; 0     ;
+;     -- arithmetic mode                      ; 0     ;
+;                                             ;       ;
+; Total registers                             ; 0     ;
+;     -- Dedicated logic registers            ; 0     ;
+;     -- I/O registers                        ; 0     ;
+;                                             ;       ;
+; I/O pins                                    ; 2     ;
+; Embedded Multiplier 9-bit elements          ; 0     ;
++---------------------------------------------+-------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Utilization by Entity                                                                                                                             ;
-+----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------+--------------+
-; Compilation Hierarchy Node ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name     ; Library Name ;
-+----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------+--------------+
-; |execute                   ; 1034 (130)        ; 32 (0)       ; 0           ; 0            ; 0       ; 0         ; 261  ; 0            ; |execute                ; work         ;
-;    |MX_2_1:B_MUX|          ; 32 (32)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |execute|MX_2_1:B_MUX   ; work         ;
-;    |SPreg:SP_REG|          ; 33 (33)           ; 32 (32)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |execute|SPreg:SP_REG   ; work         ;
-;    |alu:ALU_ENTITY|        ; 839 (839)         ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |execute|alu:ALU_ENTITY ; work         ;
-+----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------+--------------+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                         ;
++----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
+; Compilation Hierarchy Node ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name ; Library Name ;
++----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
+; |processor                 ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 2    ; 0            ; |processor          ; work         ;
++----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
 
@@ -219,81 +240,140 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 32    ;
+; Total registers                              ; 0     ;
 ; Number of registers using Synchronous Clear  ; 0     ;
 ; Number of registers using Synchronous Load   ; 0     ;
-; Number of registers using Asynchronous Clear ; 32    ;
+; Number of registers using Asynchronous Clear ; 0     ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 32    ;
+; Number of registers using Clock Enable       ; 0     ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
 
-+---------------------------------------------------+
-; Inverted Register Statistics                      ;
-+-----------------------------------------+---------+
-; Inverted Register                       ; Fan out ;
-+-----------------------------------------+---------+
-; SPreg:SP_REG|data[0]                    ; 2       ;
-; SPreg:SP_REG|data[1]                    ; 2       ;
-; SPreg:SP_REG|data[2]                    ; 2       ;
-; SPreg:SP_REG|data[3]                    ; 2       ;
-; SPreg:SP_REG|data[4]                    ; 2       ;
-; SPreg:SP_REG|data[5]                    ; 2       ;
-; SPreg:SP_REG|data[6]                    ; 2       ;
-; SPreg:SP_REG|data[7]                    ; 2       ;
-; SPreg:SP_REG|data[8]                    ; 2       ;
-; SPreg:SP_REG|data[9]                    ; 2       ;
-; SPreg:SP_REG|data[10]                   ; 2       ;
-; SPreg:SP_REG|data[11]                   ; 2       ;
-; SPreg:SP_REG|data[12]                   ; 2       ;
-; SPreg:SP_REG|data[13]                   ; 2       ;
-; SPreg:SP_REG|data[14]                   ; 2       ;
-; SPreg:SP_REG|data[15]                   ; 2       ;
-; SPreg:SP_REG|data[16]                   ; 2       ;
-; SPreg:SP_REG|data[17]                   ; 2       ;
-; SPreg:SP_REG|data[18]                   ; 2       ;
-; SPreg:SP_REG|data[19]                   ; 2       ;
-; SPreg:SP_REG|data[20]                   ; 2       ;
-; SPreg:SP_REG|data[21]                   ; 2       ;
-; SPreg:SP_REG|data[22]                   ; 2       ;
-; SPreg:SP_REG|data[23]                   ; 2       ;
-; SPreg:SP_REG|data[24]                   ; 2       ;
-; SPreg:SP_REG|data[25]                   ; 2       ;
-; SPreg:SP_REG|data[26]                   ; 2       ;
-; SPreg:SP_REG|data[27]                   ; 2       ;
-; SPreg:SP_REG|data[28]                   ; 2       ;
-; SPreg:SP_REG|data[29]                   ; 2       ;
-; SPreg:SP_REG|data[30]                   ; 2       ;
-; SPreg:SP_REG|data[31]                   ; 1       ;
-; Total number of inverted registers = 32 ;         ;
-+-----------------------------------------+---------+
++-----------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "stick_EXE_MEM:EXE_MEM_stick"                                                               ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port        ; Type   ; Severity ; Details                                                                             ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
+; signals_out ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-------------+--------+----------+-------------------------------------------------------------------------------------+
 
 
-+------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                 ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output       ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------+
-; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; Yes        ; |execute|SPreg:SP_REG|data[19]   ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 64 LEs               ; 0 LEs                  ; No         ; |execute|Add1                    ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; No         ; |execute|Add1                    ;
-; 5:1                ; 32 bits   ; 96 LEs        ; 64 LEs               ; 32 LEs                 ; No         ; |execute|MX_4_1:OUTPUT_MUX|Mux12 ;
-; 3:1                ; 32 bits   ; 64 LEs        ; 0 LEs                ; 64 LEs                 ; No         ; |execute|alu:ALU_ENTITY|Add0     ;
-; 4:1                ; 32 bits   ; 64 LEs        ; 32 LEs               ; 32 LEs                 ; No         ; |execute|alu:ALU_ENTITY|Add0     ;
-; 22:1               ; 14 bits   ; 196 LEs       ; 140 LEs              ; 56 LEs                 ; No         ; |execute|alu:ALU_ENTITY|Mux26    ;
-; 22:1               ; 14 bits   ; 196 LEs       ; 140 LEs              ; 56 LEs                 ; No         ; |execute|alu:ALU_ENTITY|Mux5     ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------+
++----------------------------------------------------------------+
+; Port Connectivity Checks: "execute:EXECUTE_PHASE|SPreg:SP_REG" ;
++---------+-------+----------+-----------------------------------+
+; Port    ; Type  ; Severity ; Details                           ;
++---------+-------+----------+-----------------------------------+
+; load    ; Input ; Info     ; Stuck at GND                      ;
+; data_in ; Input ; Info     ; Stuck at GND                      ;
++---------+-------+----------+-----------------------------------+
 
 
-+-------------------------------------------+
-; Port Connectivity Checks: "SPreg:SP_REG"  ;
-+---------+-------+----------+--------------+
-; Port    ; Type  ; Severity ; Details      ;
-+---------+-------+----------+--------------+
-; load    ; Input ; Info     ; Stuck at GND ;
-; data_in ; Input ; Info     ; Stuck at GND ;
-+---------+-------+----------+--------------+
++----------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "stick_ID_EXE:ID_EXE_stick"                                                                                              ;
++------------------------------------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port                                     ; Type   ; Severity ; Details                                                                             ;
++------------------------------------------+--------+----------+-------------------------------------------------------------------------------------+
+; signals_out.ID_is_prediction_entry_found ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; signals_out.ID_prediction                ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; signals_out.ID_prediction_address        ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; signals_out.ID_flush                     ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; signals_out.ID_instr_value               ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; signals_out.ID_dst                       ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; signals_out.ID_src1                      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; signals_out.ID_src2                      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; signals_out.ID_IMM                       ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; signals_out.ID_ocerror                   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------------------------------------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++---------------------------------------------------------------+
+; Port Connectivity Checks: "decode:DECODE_PHASE|MX_4_1:IMM_MX" ;
++-------------------+-------+----------+------------------------+
+; Port              ; Type  ; Severity ; Details                ;
++-------------------+-------+----------+------------------------+
+; data_in[0][31..1] ; Input ; Info     ; Stuck at GND           ;
+; data_in[0][0]     ; Input ; Info     ; Stuck at VCC           ;
+; data_in[1][31..5] ; Input ; Info     ; Stuck at GND           ;
++-------------------+-------+----------+------------------------+
+
+
++--------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "decode:DECODE_PHASE|decoder_64:OCDECODER"                                                     ;
++----------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port           ; Type   ; Severity ; Details                                                                             ;
++----------------+--------+----------+-------------------------------------------------------------------------------------+
+; select_out[63] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; select_out[56] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++----------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "decode:DECODE_PHASE"                                                                   ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+; Port    ; Type   ; Severity ; Details                                                                             ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+; has_sr1 ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; has_sr2 ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++---------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "control_unit:CU"                                                                                                                                       ;
++----------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; Port           ; Type   ; Severity ; Details                                                                                                                                      ;
++----------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; clk            ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; reset          ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; id_rts_inst    ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; ex_jsr_inst    ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; ex_pc          ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; mem_rts_inst   ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; mem_result     ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; id_ocerror     ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; ex_stack_error ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; ex_bad_address ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; id_ex_src1     ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; id_ex_src2     ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; ras_retpc_out  ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
++----------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------+
+; Port Connectivity Checks: "stick:IF_ID_stick"         ;
++---------------------+-------+----------+--------------+
+; Port                ; Type  ; Severity ; Details      ;
++---------------------+-------+----------+--------------+
+; signals_in.stall    ; Input ; Info     ; Stuck at GND ;
+; signals_in.IF_flush ; Input ; Info     ; Stuck at GND ;
++---------------------+-------+----------+--------------+
+
+
++------------------------------------------+
+; Port Connectivity Checks: "PCreg:PC_REG" ;
++-------+-------+----------+---------------+
+; Port  ; Type  ; Severity ; Details       ;
++-------+-------+----------+---------------+
+; reset ; Input ; Info     ; Stuck at GND  ;
++-------+-------+----------+---------------+
+
+
++------------------------------------------------+
+; Port Connectivity Checks: "Cache:CACHE_ENTITY" ;
++----------+-------+----------+------------------+
+; Port     ; Type  ; Severity ; Details          ;
++----------+-------+----------+------------------+
+; rd_instr ; Input ; Info     ; Stuck at VCC     ;
++----------+-------+----------+------------------+
+
+
++-------------------------------------------------+
+; Port Connectivity Checks: "MX_4_1:PC_MUX"       ;
++---------------+-------+----------+--------------+
+; Port          ; Type  ; Severity ; Details      ;
++---------------+-------+----------+--------------+
+; data_in[2..3] ; Input ; Info     ; Stuck at GND ;
++---------------+-------+----------+--------------+
 
 
 +-------------------------------+
@@ -301,7 +381,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:04     ;
+; Top            ; 00:00:00     ;
 +----------------+--------------+
 
 
@@ -311,7 +391,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Sat Dec 19 19:53:00 2015
+    Info: Processing started: Mon Jan 04 16:04:24 2016
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off pipeline -c pipeline
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 2 design units, including 1 entities, in source file pcreg.vhd
@@ -364,24 +444,100 @@ Info (12021): Found 2 design units, including 1 entities, in source file mx_2_1.
 Info (12021): Found 2 design units, including 1 entities, in source file spreg.vhd
     Info (12022): Found design unit 1: SPreg-spreg_arch
     Info (12023): Found entity 1: SPreg
-Info (12127): Elaborating entity "execute" for the top level hierarchy
-Warning (10541): VHDL Signal Declaration warning at execute.vhd(50): used implicit default value for signal "bad_address" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Info (12128): Elaborating entity "MX_2_1" for hierarchy "MX_2_1:B_MUX"
-Info (12128): Elaborating entity "SPreg" for hierarchy "SPreg:SP_REG"
-Info (12128): Elaborating entity "alu" for hierarchy "alu:ALU_ENTITY"
-Info (12128): Elaborating entity "MX_4_1" for hierarchy "MX_4_1:OUTPUT_MUX"
-Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "bad_address" is stuck at GND
+Info (12021): Found 2 design units, including 1 entities, in source file decoder8.vhd
+    Info (12022): Found design unit 1: decoder_8-decoder_8_arch
+    Info (12023): Found entity 1: decoder_8
+Info (12021): Found 2 design units, including 1 entities, in source file mx_8_1.vhd
+    Info (12022): Found design unit 1: MX_8_1-MX_8_1_arch
+    Info (12023): Found entity 1: MX_8_1
+Info (12021): Found 2 design units, including 1 entities, in source file ras.vhd
+    Info (12022): Found design unit 1: RAS-RAS_arch
+    Info (12023): Found entity 1: RAS
+Info (12021): Found 2 design units, including 1 entities, in source file ras_reg_file.vhd
+    Info (12022): Found design unit 1: ras_reg_file-ras_reg_file_arch
+    Info (12023): Found entity 1: RAS_reg_file
+Info (12021): Found 2 design units, including 1 entities, in source file ras_spreg.vhd
+    Info (12022): Found design unit 1: RAS_SPreg-ras_spreg_arch
+    Info (12023): Found entity 1: RAS_SPreg
+Info (12021): Found 2 design units, including 1 entities, in source file decode.vhd
+    Info (12022): Found design unit 1: decode-decode_arch
+    Info (12023): Found entity 1: decode
+Info (12021): Found 2 design units, including 1 entities, in source file ras_clc.vhd
+    Info (12022): Found design unit 1: RAS_CLC-ras_clc_arch
+    Info (12023): Found entity 1: RAS_CLC
+Info (12021): Found 2 design units, including 1 entities, in source file decoder_64.vhd
+    Info (12022): Found design unit 1: decoder_64-decoder_64_arch
+    Info (12023): Found entity 1: decoder_64
+Info (12021): Found 2 design units, including 1 entities, in source file stickid_exe.vhd
+    Info (12022): Found design unit 1: stick_ID_EXE-stick_ID_EXE_arch
+    Info (12023): Found entity 1: stick_ID_EXE
+Info (12021): Found 2 design units, including 1 entities, in source file stickexe_mem.vhd
+    Info (12022): Found design unit 1: stick_EXE_MEM-stick_EXE_MEM_arch
+    Info (12023): Found entity 1: stick_EXE_MEM
+Info (12127): Elaborating entity "processor" for the top level hierarchy
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(232): used implicit default value for signal "CACHE_rd_data" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(232): used implicit default value for signal "CACHE_wr" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(233): used implicit default value for signal "CACHE_data_in" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(234): used implicit default value for signal "FETCH_update_entry" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(234): used implicit default value for signal "FETCH_prediction_was_success" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(235): used implicit default value for signal "FETCH_update_entry_pc" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(235): used implicit default value for signal "FETCH_update_entry_jmp_address" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10036): Verilog HDL or VHDL warning at processor.vhd(243): object "EXE_MEM_signal_out" assigned a value but never read
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(246): used implicit default value for signal "ID_WB_write" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10036): Verilog HDL or VHDL warning at processor.vhd(248): object "ID_has_SR1" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at processor.vhd(248): object "ID_has_SR2" assigned a value but never read
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(250): used implicit default value for signal "ID_WB_data" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(251): used implicit default value for signal "ID_WB_rdst" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(254): used implicit default value for signal "fwd_MEM_A" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(254): used implicit default value for signal "fwd_MEM_B" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(254): used implicit default value for signal "fwd_WB_A" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(254): used implicit default value for signal "fwd_WB_B" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(255): used implicit default value for signal "forward_A_MEM" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(255): used implicit default value for signal "forward_B_MEM" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(255): used implicit default value for signal "forward_A_WB" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(255): used implicit default value for signal "forward_B_WB" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Info (12128): Elaborating entity "MX_4_1" for hierarchy "MX_4_1:PC_MUX"
+Info (12128): Elaborating entity "Cache" for hierarchy "Cache:CACHE_ENTITY"
+Warning (10036): Verilog HDL or VHDL warning at Cache.vhd(27): object "whitespace" assigned a value but never read
+Warning (10542): VHDL Variable Declaration warning at syn_textio.vhd(213): used initial value expression for variable "m" because variable was never assigned a value
+Warning (10542): VHDL Variable Declaration warning at Cache.vhd(70): used initial value expression for variable "whitespace" because variable was never assigned a value
+Warning (10542): VHDL Variable Declaration warning at syn_textio.vhd(378): used initial value expression for variable "bv" because variable was never assigned a value
+Info (12128): Elaborating entity "PCreg" for hierarchy "PCreg:PC_REG"
+Info (12128): Elaborating entity "fetch" for hierarchy "fetch:FETCH_PHASE"
+Info (12128): Elaborating entity "branch_predictor" for hierarchy "fetch:FETCH_PHASE|branch_predictor:PREDICTOR"
+Info (12128): Elaborating entity "stick" for hierarchy "stick:IF_ID_stick"
+Info (12128): Elaborating entity "control_unit" for hierarchy "control_unit:CU"
+Info (12128): Elaborating entity "RAS" for hierarchy "control_unit:CU|RAS:RASunit"
+Info (12128): Elaborating entity "RAS_CLC" for hierarchy "control_unit:CU|RAS:RASunit|RAS_CLC:CLC"
+Info (12128): Elaborating entity "RAS_SPreg" for hierarchy "control_unit:CU|RAS:RASunit|RAS_SPreg:SP"
+Info (12128): Elaborating entity "RAS_reg_file" for hierarchy "control_unit:CU|RAS:RASunit|RAS_reg_file:stek"
+Info (12128): Elaborating entity "decoder_8" for hierarchy "control_unit:CU|RAS:RASunit|RAS_reg_file:stek|decoder_8:DECODER"
+Info (12128): Elaborating entity "reg" for hierarchy "control_unit:CU|RAS:RASunit|RAS_reg_file:stek|reg:\GEN_REG:0:REGX"
+Info (12128): Elaborating entity "MX_8_1" for hierarchy "control_unit:CU|RAS:RASunit|RAS_reg_file:stek|MX_8_1:MX"
+Info (12128): Elaborating entity "decode" for hierarchy "decode:DECODE_PHASE"
+Info (12128): Elaborating entity "decoder_64" for hierarchy "decode:DECODE_PHASE|decoder_64:OCDECODER"
+Info (12128): Elaborating entity "reg_file" for hierarchy "decode:DECODE_PHASE|reg_file:REGFILE"
+Info (12128): Elaborating entity "decoder_32" for hierarchy "decode:DECODE_PHASE|reg_file:REGFILE|decoder_32:DECODER"
+Info (12128): Elaborating entity "MX_32_1" for hierarchy "decode:DECODE_PHASE|reg_file:REGFILE|MX_32_1:MX1"
+Info (12128): Elaborating entity "stick_ID_EXE" for hierarchy "stick_ID_EXE:ID_EXE_stick"
+Info (12128): Elaborating entity "execute" for hierarchy "execute:EXECUTE_PHASE"
+Info (12128): Elaborating entity "SPreg" for hierarchy "execute:EXECUTE_PHASE|SPreg:SP_REG"
+Info (12128): Elaborating entity "alu" for hierarchy "execute:EXECUTE_PHASE|alu:ALU_ENTITY"
+Info (12128): Elaborating entity "MX_2_1" for hierarchy "execute:EXECUTE_PHASE|MX_2_1:JMP_MUX"
+Info (12128): Elaborating entity "stick_EXE_MEM" for hierarchy "stick_EXE_MEM:EXE_MEM_stick"
+Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 1295 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 179 input pins
-    Info (21059): Implemented 82 output pins
-    Info (21061): Implemented 1034 logic cells
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 4 warnings
-    Info: Peak virtual memory: 490 megabytes
-    Info: Processing ended: Sat Dec 19 19:53:06 2015
-    Info: Elapsed time: 00:00:06
-    Info: Total CPU time (on all processors): 00:00:06
+Warning (21074): Design contains 2 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "clk"
+    Warning (15610): No output dependent on input pin "reset"
+Info (21057): Implemented 2 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 2 input pins
+    Info (21059): Implemented 0 output pins
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 30 warnings
+    Info: Peak virtual memory: 515 megabytes
+    Info: Processing ended: Mon Jan 04 16:04:27 2016
+    Info: Elapsed time: 00:00:03
+    Info: Total CPU time (on all processors): 00:00:03
 
 

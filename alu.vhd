@@ -33,13 +33,13 @@ begin
 			when "001101" => --subi
 				output <= std_logic_vector(signed(A) + signed(B));
 			when "010000" => --and
-				output <= std_logic_vector(signed(A) and signed(B));
+				output <= std_logic_vector(unsigned(A) and unsigned(B));
 			when "010001" => --or
-				output <= std_logic_vector(signed(A) or signed(B));
+				output <= std_logic_vector(unsigned(A) or unsigned(B));
 			when "010010" => --xor
-				output <= std_logic_vector(signed(A) xor signed(B));
+				output <= std_logic_vector(unsigned(A) xor unsigned(B));
 			when "010011" => --not
-				output <= std_logic_vector( not (signed(A) and signed(B)) );
+				output <= std_logic_vector( not (unsigned(A)));
 			when "011000" => --shl
 				output <= std_logic_vector(SHIFT_LEFT(signed(A), to_integer(unsigned(B))));
 			when "011001" => --shr
@@ -52,13 +52,10 @@ begin
 				output <= std_logic_vector(ROTATE_LEFT(signed(A), to_integer(unsigned(B))));
 			when "011100" => --ror
 				output <= std_logic_vector(ROTATE_RIGHT(signed(A), to_integer(unsigned(B))));
-			when "100000" => --JMP RS1 + immed
-				output <= std_logic_vector(signed(A) + signed(B));
-			when "100001" => --JSR RS1 + immed
-				output <= std_logic_vector(signed(A) + signed(B));
-				
+			-- //////// JMP N/A
+			when "100001" => --JSR propusti A
+				output <= A;
 			-- //////// RTS, PUSH, POP N/A
-				
 			when "101000" => --BEQ COMPARE RS1 AND RS2 - and make output true/false
 				if (unsigned(A) = unsigned(B)) then
 					output <= ( 31 downto 1 => '0', 

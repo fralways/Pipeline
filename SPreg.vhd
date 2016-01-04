@@ -12,7 +12,8 @@ entity SPreg is
 		reset : in std_logic;
 		data_in : in std_logic_vector(31 downto 0);
 		
-		data_out : out std_logic_vector(31 downto 0)
+		data_out : out std_logic_vector(31 downto 0);
+		adr_error_out : out std_logic
 	);
 end SPreg;
 
@@ -22,16 +23,21 @@ begin
 process (clk, reset)
 	variable data : std_logic_vector(31 downto 0);
 begin
-
 	if (reset = '1') then
 		data := (others => '1');
+		adr_error_out <= '0';
 	elsif (rising_edge(clk)) then
+		adr_error_out <= '0';
 		if (load = '1') then
 			data := data_in;
 		elsif (inc = '1') then
 			data := std_logic_vector(to_unsigned(to_integer(unsigned(data))+1, data_out'length));
+			if (data = X"00000000") then adr_error_out <= '1';
+			end if;
 		elsif (dec = '1') then
 			data := std_logic_vector(to_unsigned(to_integer(unsigned(data))-1, data_out'length));
+			if (data = X"FFFFFFFF") then adr_error_out <= '1';
+			end if;
 		end if;
 	end if;
 	

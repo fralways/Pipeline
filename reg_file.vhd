@@ -90,7 +90,7 @@ begin
 	MX1 : MX_32_1 port map (src1, reg_data_out, MX1_out);
 	MX2 : MX_32_1 port map (src2, reg_data_out, MX2_out);
 	
-	data_out1 <= MX1_out;
-	data_out2 <= MX2_out;
+	data_out1 <= data_in when to_integer(unsigned(dst)) = to_integer(unsigned(src1)) else MX1_out;
+	data_out2 <= data_in when to_integer(unsigned(dst)) = to_integer(unsigned(src2)) else MX2_out;
 
 end reg_file_arch;

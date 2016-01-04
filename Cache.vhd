@@ -105,6 +105,8 @@ begin
 		
 			write(line_for_output, read_address);
 			writeline(output, line_for_output);
+			
+			data_out <= read_value;
 		elsif (wr = '1') then
 			instr_address := to_integer(unsigned(address_in));
 			write_instruction_to_file(instr_address, data_in);

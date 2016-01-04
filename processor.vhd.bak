@@ -2,8 +2,136 @@ library ieee;
 use ieee.std_logic_1164.all;
 use work.custom_types.all;
 
-entity procesor is
+entity processor is
 port
 (
-	clk : std_logic
-)
+	clk : std_logic;
+	reset : std_logic
+);
+end processor;
+
+architecture processor_arch of processor is
+
+component fetch
+port
+(
+	clk : in std_logic;
+	reset : in std_logic;
+	pc : in std_logic_vector(31 downto 0);
+	update_entry : in std_logic;
+	prediction_was_success : in std_logic;
+	update_entry_pc : in std_logic_vector(31 downto 0);
+	update_entry_jmp_address : in std_logic_vector(31 downto 0);
+	
+	pc_out : out std_logic_vector(31 downto 0);
+	pc_plus : out std_logic_vector(31 downto 0);
+	is_prediction_entry_found : out std_logic;
+	prediction : out std_logic;
+	prediction_address : out std_logic_vector(31 downto 0)
+);
+end component;
+
+component MX_4_1
+port
+(
+	cs : in std_logic_vector(1 downto 0);
+	data_in : in array_of_reg4;
+	
+	data_out : out std_logic_vector(31 downto 0)
+
+);
+
+end component;
+
+component PCreg
+	port
+	(
+		clk : in std_logic;
+		load : in std_logic;
+		inc : in std_logic;
+		reset : in std_logic;
+		data_in : in std_logic_vector(31 downto 0);
+		
+		data_out : out std_logic_vector(31 downto 0)
+	);
+end component;
+
+component Cache is
+port
+(
+	clk : in std_logic;
+	rd_instr : in std_logic;
+	rd_data : in std_logic;
+	wr : in std_logic;
+	address_in : in std_logic_vector(31 downto 0);
+	data_in : in std_logic_vector(31 downto 0);
+	
+	data_out : out std_logic_vector(31 downto 0)
+
+);
+end component;
+
+component stick is
+port
+(
+	clk : in std_logic;
+	signals_in : in stick_struct;
+	signals_out : out stick_struct
+);
+end component;
+
+component control_unit is
+port
+(
+	IF_is_prediction_entry_found : in std_logic;
+	IF_prediction : in std_logic;
+	
+	pc_jumping : out std_logic
+);
+end component; 
+
+signal PC_load, PC_inc : std_logic;
+signal PC_data_in, PC_data_out : std_logic_vector(31 downto 0);
+signal CACHE_rd_instr, CACHE_rd_data, CACHE_wr : std_logic;
+signal CACHE_address_in, CACHE_data_in, CACHE_data_out : std_logic_vector(31 downto 0);
+signal FETCH_update_entry, FETCH_prediction_was_success, FETCH_is_prediction_entry_found, FETCH_prediction : std_logic;
+signal FETCH_update_entry_pc, FETCH_update_entry_jmp_address, FETCH_pc_out, FETCH_pc_plus, FETCH_prediction_address : std_logic_vector(31 downto 0);
+signal CU_PC_jumping : std_logic;
+signal PC_MUX_CS : std_logic_vector(1 downto 0);
+signal PC_MUX_IN : array_of_reg4;
+
+begin
+
+	PC_load <= '1' when reset = '1' or CU_PC_jumping = '1' else '0';
+	PC_inc <= '1' when PC_load = '0' else '0';
+	CACHE_address_in <= PC_data_out;
+	CACHE_rd_instr <= '1';
+	PC_MUX_IN <= (0 => CACHE_data_out, 1 => FETCH_prediction_address, 3 downto 2 => (others => '0'));
+	PC_MUX_CS <= (1 => reset, 0 => CU_PC_jumping);
+	--PC_MUX_CS (0) <= CU_PC_jumping;
+	PC_MUX : MX_4_1 port map ( PC_MUX_CS, PC_MUX_IN, PC_data_in);
+	--PC_data_in <= CACHE_data_out when reset = '0' else (others => '0');
+	--PC_data_in <= FETCH_update_entry_jmp_address when CU_PC_jumping = '1' and reset = '0';
+	--PC_data_in <= CACHE_data_out when reset = '0' and CU_PC_jumping = '0' else (others=>'0') when reset = '1' else FETCH_update_entry_jmp_address;
+
+	
+	CACHE_ENTITY : Cache port map (clk, CACHE_rd_instr, CACHE_rd_data, CACHE_wr, CACHE_address_in, CACHE_data_in, CACHE_data_out);
+	PC_REG : PCreg port map (clk, PC_load, PC_inc, '0', PC_data_in, PC_data_out);
+	FETCH_PHASE : fetch port map (clk, reset, PC_data_out, FETCH_update_entry, FETCH_prediction_was_success, FETCH_update_entry_pc, FETCH_update_entry_jmp_address,
+														FETCH_pc_out, FETCH_pc_plus, FETCH_is_prediction_entry_found, FETCH_prediction, FETCH_prediction_address);
+	IF_ID_stick : stick port map (
+											clk => clk,
+											signals_in.IF_pc => FETCH_pc_out,
+											signals_in.IF_pc_plus => FETCH_pc_plus,
+											signals_in.IF_is_prediction_entry_found => FETCH_is_prediction_entry_found,
+											signals_in.IF_prediction => FETCH_prediction,
+											signals_in.IF_prediction_address => FETCH_prediction_address,
+											signals_in.stall => '0',
+											signals_in.IF_flush => '0',
+											signals_in.IF_instr_value => CACHE_data_outs
+											
+											);
+	
+	CU : control_unit port map (FETCH_is_prediction_entry_found, FETCH_prediction, CU_PC_jumping);
+
+end processor_arch;

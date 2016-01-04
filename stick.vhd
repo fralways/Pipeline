@@ -6,8 +6,8 @@ entity stick is
 port
 (
 	clk : in std_logic;
-	signals_in : in stick_struct;
-	signals_out : out stick_struct
+	signals_in : in stick_structIF_ID;
+	signals_out : out stick_structIF_ID
 );
 end stick;
 
@@ -17,14 +17,14 @@ begin
 
 	process(clk)
 	
-	variable signals : stick_struct;
+	variable signals : stick_structIF_ID;
 	
 	begin
 		if (rising_edge(clk)) then
-			if (signals_in.IF_stall = '0') then
+			if (signals_in.stall = '0') then
 				signals := signals_in;
 			else
-				signals.IF_stall := '1';
+				signals.stall := '1';
 			end if;
 		end if;
 		signals_out <= signals;
