@@ -7,6 +7,7 @@ entity decode is
 port
 (
 	--za sad je u redu
+	flush : in std_logic;
 	IF_pc : in std_logic_vector(31 downto 0);
 	IF_pc_plus : in std_logic_vector(31 downto 0);
 	IF_is_prediction_entry_found : in std_logic;
@@ -32,7 +33,7 @@ port
 	RSRC2 : out std_logic_vector(31 downto 0);
 	IMM : out std_logic_vector(31 downto 0);
 	stall : out std_logic;
-	flush : out std_logic;
+	flush_out : out std_logic;
 	ocerror : out std_logic;
 	pc : out std_logic_vector(31 downto 0);
 	pc_plus : out std_logic_vector(31 downto 0);
@@ -113,8 +114,10 @@ signal immshiftext : std_logic_vector(31 downto 0);
 signal immbranchext : std_logic_vector(31 downto 0);
 signal mx_cs : std_logic_vector(1 downto 0);
 signal imm_mx_datain : array_of_reg4;
+signal flushing : std_logic;
 
 begin
+	flushing <= '1' when IF_flush = '1' or IF_stall = '1' or flush = '1' else '0';
 	opcode <= IF_instr_value (31 downto 26);
 	dst <= IF_instr_value (25 downto 21);
 	rs1 <= IF_instr_value (20 downto 16);
@@ -152,19 +155,12 @@ begin
 	--registarski fajl
 	REGFILE : reg_file port map(clk, reset, WB_write, WB_rdst, rs1, rs2, WB_data, rs1_val, rs2_val);
 	
-	--potrebno mapirati RSRC1 i RSRC2 izlaze tako da primaju prosledjene vrednosti;
-	--za sada ostavljen izlazi regfajl
 	RSRC1 <= rs1_val;
 	RSRC2 <= rs2_val;
 	
 	--priprema ulaza MX za neposrednu vrednost
 	mx_cs(0) <= '1' when is_immshift = '1' or is_immbranch = '1' else '0';
 	mx_cs(1) <= '1' when is_immcnt = '1' or is_immbranch = '1' else '0';
-	
-	--druga implementacija ulaza:
-	--immcntext <= "1111111111111111" & immcnt when immcnt(15) = '1' else "0000000000000000" & immcnt;
-	--immbranchext <= "1111111111111111" & immbranch when immbranch(15) = '1' else "0000000000000000" & immbranch;
-	--immshiftext <= "000000000000000000000000000" & immshift;
 	
 	immshiftext <= (31 downto 5 => '0') & immshift;
 	immcntext <= (31 downto 16 => '1') & immcnt when immcnt(15) = '1' else (31 downto 16 => '0') & immcnt;
@@ -177,73 +173,74 @@ begin
 	prediction <= IF_prediction;
 	prediction_address <= IF_prediction_address;
 	stall <= IF_stall;
-	flush <= IF_flush;
-	instr_value <= IF_instr_value;
-	pc <= IF_pc;
-	pc_plus <= IF_pc_plus;
+	flush_out <= IF_flush or flush;
+	instr_value <= IF_instr_value when not flushing = '1' else X"FC000000";
+	pc <= IF_pc when not flushing = '1' else X"00000000";
+	pc_plus <= IF_pc_plus when not flushing = '1' else X"00000000";
 	
 	--instrukcije koje imaju destinacioni registar i vrednost za upis dobijaju u EX fazi ili ranije
 	--MOV, MOVI, ADD, SUB, ADDI, SUBI, AND, OR, XOR, NOT, SHL, SHR, SAR, ROL, ROR
-	dstvalid_EX <= '1' when operation(4)='1' or operation(5)='1' or operation(7)='1' or operation(8)='1' or 
+	dstvalid_EX <= '1' when (operation(4)='1' or operation(5)='1' or operation(7)='1' or operation(8)='1' or 
 					operation(9)='1' or operation(12)='1' or operation(13)='1' or operation(16)='1' or operation(17)='1' or 
 					operation(18)='1' or operation(19)='1' or operation(24)='1' or operation(25)='1' or operation(26)='1' or 
-					operation(27)='1' or operation(28)='1' else '0';
+					operation(27)='1' or operation(28)='1') and flushing = '0' else '0';
 	
 	--instrukcije koje imaju destinacioni registar i vrednost za upis dobijaju u MEM fazi
 	--LOAD, POP
-	dstvalid_MEM <= '1' when operation(0)='1' or operation(37)='1'  else '0';
+	dstvalid_MEM <= '1' when (operation(0)='1' or operation(37)='1') and flushing = '0'  else '0';
 	
 	--instrukcije koje koriste 1 RS1 i IMM vrednost za racunanje:
 	-- MOVI, ADDI, SUBI, SHL, SHR, SAR, ROL, ROR
-	RS_IM_type <= '1' when operation(5)='1' or operation(12)='1' or operation(13)='1' or operation(24)='1' or
-					operation(25)='1' or operation(26)='1' or operation(27)='1' or operation(28)='1' else '0';
+	RS_IM_type <= '1' when (operation(5)='1' or operation(12)='1' or operation(13)='1' or operation(24)='1' or
+					operation(25)='1' or operation(26)='1' or operation(27)='1' or operation(28)='1') and flushing = '0' else '0';
 					
 	--instrkucije pomeranja operanda u registar i efektivno ne koriste EX fazu:
 	-- MOV, MOVI
-	MOV_type <= '1' when operation(4)='1' or operation(5)='1' else '0';
+	MOV_type <= '1' when (operation(4)='1' or operation(5)='1') and not flushing = '0' else '0';
 	
 	--instrukcije uslovnog skoka:
 	--BEQ, BNQ, BGT, BLT, BGE, BLE
-	COND_type <= '1' when operation(40)='1' or operation(41)='1' or operation(42)='1' or operation(43)='1' or
-					operation(44)='1' or operation(45)='1' else '0';
+	COND_type <= '1' when (operation(40)='1' or operation(41)='1' or operation(42)='1' or operation(43)='1' or
+					operation(44)='1' or operation(45)='1') and flushing = '0' else '0';
 					
-	JMP_inst <= operation(32);
-	RTS_type <= operation(34);
-	JSR_inst <= operation(33);
-	PUSH_inst <= operation(36);
-	POP_inst <= operation(37);
-	LOAD_inst <= operation(0);
-	STORE_inst <= operation(1);
+	JMP_inst <= operation(32) and not flushing;
+	RTS_type <= operation(34) and not flushing;
+	JSR_inst <= operation(33) and not flushing;
+	PUSH_inst <= operation(36) and not flushing;
+	POP_inst <= operation(37) and not flushing;
+	LOAD_inst <= operation(0) and not flushing;
+	STORE_inst <= operation(1) and not flushing;
 	
 	--instrukcije koje vrse upis u memoriju:
 	--STORE, JSR, PUSH
-	MEM_WR <= '1' when operation(1) = '1' or operation(33) = '1' or operation(36) = '1' else '0';
+	MEM_WR <= '1' when (operation(1) = '1' or operation(33) = '1' or operation(36) = '1') and flushing = '0' else '0';
 	
 	--instrkucije koje vrse citanje iz memorije:
 	--LOAD, RTS, POP
-	MEM_RD <= '1' when operation(0) = '1' or operation(34) = '1' or operation(37) = '1' else '0';
+	MEM_RD <= '1' when (operation(0) = '1' or operation(34) = '1' or operation(37) = '1') and flushing = '0' else '0';
 	
 	--instrukcije koje imaju neki registar kao odrediste;
 	--LOAD, MOV, MOVI, ADD, SUB, ADDI, SUBI, AND, OR, XOR, NOT, SHL, SHR, SAR, ROL, ROR, POP
-	has_DR <= '1' when operation(0) = '1' or operation(4) = '1' or operation(5) = '1' or operation(8) = '1' or operation(9) = '1' or 
+	has_DR <= '1' when (operation(0) = '1' or operation(4) = '1' or operation(5) = '1' or operation(8) = '1' or operation(9) = '1' or 
 				operation(12) = '1' or operation(13) = '1' or operation(16) = '1' or operation(17) = '1' or operation(18) = '1' or 
 				operation(19) = '1' or operation(24) = '1' or operation(25) = '1' or operation(26) = '1' or operation(27) = '1' or 
-				operation(28) = '1' or operation(37) = '1' else '0';
+				operation(28) = '1' or operation(37) = '1') and flushing = '0' else '0';
 				
 	--instrukcije koje koriste polje RS1:
 	--LOAD, STORE, MOV, ADD, SUB, ADDI, SUBI, AND, OR, XOR, NOT, SHL, SHR, SAR, ROL, ROR, JMP, JSR, PUSH, BEQ, BNQ, BLT, BGT, BLE, BGE
-	has_SR1 <= '1' when operation(0) = '1' or operation(1) = '1' or operation(4) = '1' or operation(8) = '1' or operation(9) = '1' or
+	has_SR1 <= '1' when (operation(0) = '1' or operation(1) = '1' or operation(4) = '1' or operation(8) = '1' or operation(9) = '1' or
 				operation(12) = '1' or operation(13) = '1' or operation(16) = '1' or operation(17) = '1' or operation(18) = '1' or
 				operation(19) = '1' or operation(24) = '1' or operation(25) = '1' or operation(26) = '1' or operation(27) = '1' or 
 				operation(28) = '1' or operation(32) = '1' or operation(33) = '1' or operation(36) = '1' or operation(40) = '1' or
-				operation(41) = '1' or operation(42) = '1' or operation(43) = '1' or operation(44) = '1' or operation(45) = '1' else '0';
+				operation(41) = '1' or operation(42) = '1' or operation(43) = '1' or operation(44) = '1' or operation(45) = '1') and flushing = '0'
+				else '0';
 	
-	--instrukcije koje koriste polje RS2:
+	--instrukcije koje koriste polje RS2
 	--STORE, ADD, SUB, AND, OR, XOR, 
-	has_SR2 <= '1' when operation(1) = '1' or operation(8) = '1' or operation(9) = '1' or operation(16) = '1' or operation(17) = '1' or
+	has_SR2 <= '1' when (operation(1) = '1' or operation(8) = '1' or operation(9) = '1' or operation(16) = '1' or operation(17) = '1' or
 				operation(18) = '1' or operation(24) = '1' or operation(25) = '1' or operation(26) = '1' or operation(27) = '1' or 
 				operation(28) = '1' or operation(40) = '1' or operation(41) = '1' or operation(42) = '1' or operation(43) = '1' or
-				operation(44) = '1' or operation(45) = '1' else '0';
+				operation(44) = '1' or operation(45) = '1') and flushing = '0' else '0';
 	
 	
 end decode_arch;

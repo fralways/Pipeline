@@ -36,10 +36,16 @@ port
 	STORE_type : in std_logic;
 	RTS_type : in std_logic;
 	JSR_type : in std_logic;
+	is_prediction_entry_found : in std_logic;
+	prediction : in std_logic;
 	
 	MEM_RD : in std_logic;
 	MEM_WR : in std_logic;
 	HAS_DR : in std_logic;
+	
+	stall_ID_MEM : in std_logic;
+	ID_flush : in std_logic;
+	flush : in std_logic;
 	
 	MOV_type_out : out std_logic;
 	JMP_type_out : out std_logic;
@@ -59,11 +65,19 @@ port
 	MEM_WR_out : out std_logic;
 	HAS_DR_out : out std_logic;
 	
+	pc_plus_out : out std_logic_vector(31 downto 0);
 	address : out std_logic_vector(31 downto 0); --memory address
 	result : out std_logic_vector(31 downto 0); --result from aritm instr
 	pc_jmp_value : out std_logic_vector(31 downto 0); --value that should be put into pc (jumps)
 	stack_error : out std_logic;
-	bad_address : out std_logic
+	bad_address : out std_logic;
+	
+	is_prediction_entry_found_out : out std_logic;
+	prediction_out : out std_logic;
+	
+	stall_ID_MEM_out : out std_logic;
+	flush_out : out std_logic
+
 );
 
 end execute;
@@ -142,11 +156,15 @@ signal SP_inc, SP_dec, SP_load : std_logic;
 signal err_PC_IMM, err_RS1_IMM : std_logic;
 signal check_PC_IMM : std_logic_vector(32 downto 0);
 
+signal flushing : std_logic;
+
 begin
 	--izuzeci su : kod racunanja adrese bezuslovnog skoka rs1+immed
 	--					kod racunanja adrese uslovnog skoka pc+immed
 	--					kod load_store	rs1+immed
 	--					kod prekoracenja steka
+	
+	flushing <= '1' when flush = '1' or ID_flush = '1' else '0';
 	
 	SP_in <= (others => '0');
 	SP_load <= '0';
@@ -161,8 +179,8 @@ begin
 	B_MUX_CS(1) <= '1' when fwd_MEM_B = '1' or fwd_WB_B = '1' else '0';
 	B_MUX : MX_4_1 port map (B_MUX_CS, B_MUX_IN, B_MUX_OUT);
 	
-	SP_dec <= '1' when STACK_PUSH_type = '1' else '0';
-	SP_inc <= '1' when STACK_POP_type = '1' else '0';
+	SP_dec <= '1' when STACK_PUSH_type = '1' and flushing = '0' else '0';
+	SP_inc <= '1' when STACK_POP_type = '1' and flushing = '0' else '0';
 	SP_REG : SPreg port map (clk, SP_load, SP_inc, SP_dec, reset, SP_in, SP_out, stack_error);
 	
 	ALU_ENTITY : alu port map (PC(31 downto 26), A_MUX_OUT, B_MUX_OUT, ALU_OUT);
@@ -176,7 +194,9 @@ begin
 	RS1_IMM_value <= std_logic_vector(signed(RS1) + signed(IMM)); --ovo je i za JMP vrednost adrese i za load/store
 	err_RS1_IMM <= RS1_IMM_value(31); -- ako je negativna adresa onda je error
 	LOAD_STORE_signal <= '1' when LOAD_type = '1' or STORE_type = '1' else '0';
-		
+	
+--	PUSH_POP_signal <= '1' when STACK_PUSH_type = '1' or STACK_POP_type = '1' else '0';
+	
 	result <= ALU_OUT;
 	
 	JMP_mux_in <= (0=>PC_IMM_ADD, 1=> RS1_IMM_value);
@@ -204,4 +224,10 @@ begin
 	MEM_RD_out <= MEM_RD;
 	MEM_WR_out <= MEM_WR;
 	HAS_DR_out <= HAS_DR;
+	stall_ID_MEM_out <= stall_ID_MEM;
+	
+	pc_plus_out <= pc_plus;
+	is_prediction_entry_found_out <= is_prediction_entry_found;
+	prediction_out <= prediction;
+	flush_out <= flushing;
 end execute_arch;

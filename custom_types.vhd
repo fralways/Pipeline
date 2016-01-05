@@ -18,21 +18,21 @@ package custom_types is
 	
 	type stick_structIF_ID is record
 		stall : std_logic;
-		
+		flush : std_logic;
+
 		--izlazi IF faze
 		IF_pc : std_logic_vector(31 downto 0);
 		IF_pc_plus : std_logic_vector(31 downto 0);
 		IF_is_prediction_entry_found : std_logic;
 		IF_prediction : std_logic;
 		IF_prediction_address : std_logic_vector(31 downto 0);
-		IF_flush : std_logic;
 		IF_instr_value : std_logic_vector(31 downto 0);
 		
 	end record stick_structIF_ID;
 	
 	type stick_structID_EXE is record
 		stall : std_logic;
-		
+		flush : std_logic;
 		--izlazi ID faze
 		--preneseni
 		ID_is_prediction_entry_found : std_logic;
@@ -40,7 +40,6 @@ package custom_types is
 		ID_prediction_address : std_logic_vector(31 downto 0);
 		ID_pc : std_logic_vector(31 downto 0);
 		ID_pc_plus : std_logic_vector(31 downto 0);
-		ID_flush : std_logic;
 		ID_instr_value : std_logic_vector(31 downto 0);
 		--generisani	
 		ID_dstvalid_EX : std_logic;
@@ -65,11 +64,13 @@ package custom_types is
 		ID_MEM_WR : std_logic;
 		ID_MEM_RD : std_logic;
 		ID_has_DR : std_logic;
+		ID_stall_MEM : std_logic;
 	end record stick_structID_EXE;
 	
 	type stick_structEXE_MEM is record
 		stall : std_logic;
-		
+		flush : std_logic;
+
 		--izlazi EX faze
 		--preneseni
 		EX_is_prediction_entry_found : std_logic;
@@ -77,7 +78,6 @@ package custom_types is
 		EX_prediction_address : std_logic_vector(31 downto 0);
 		EX_pc : std_logic_vector(31 downto 0);
 		EX_pc_plus : std_logic_vector(31 downto 0);
-		EX_flush : std_logic;
 		EX_instr_value : std_logic_vector(31 downto 0);
 		EX_dstvalid_MEM : std_logic;
 		EX_dst_valid : std_logic;
@@ -94,6 +94,7 @@ package custom_types is
 		EX_MEM_WR : std_logic;
 		EX_MEM_RD : std_logic;
 		EX_has_DR : std_logic;
+		EX_stall_ID_MEM : std_logic;
 		--generisani
 		EX_jmp_is_ok : std_logic;
 		EX_address : std_logic_vector(31 downto 0); --jmp address
@@ -104,5 +105,22 @@ package custom_types is
 		EX_bad_address : std_logic;
 		
 	end record stick_structEXE_MEM;
+	
+	type stick_structMEM_WB is record
+		stall : std_logic;
+		flush : std_logic;
+
+		--izlazi mem faze
+		get_data_from_data_cache : std_logic;
+		write_data_to_cache : std_logic;
+		cache_data_in : std_logic_vector(31 downto 0);
+		cache_address_in : std_logic_vector(31 downto 0);
+		pc_jmp_value_out : std_logic_vector(31 downto 0);
+		mem_data_out : std_logic_vector(31 downto 0);
+		rd_out : std_logic_vector(4 downto 0);
+		has_DR_out : std_logic;
+		misspred : std_logic;
+		
+	end record stick_structMEM_WB;
 
 end package custom_types;

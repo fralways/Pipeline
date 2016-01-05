@@ -1,5 +1,5 @@
 Analysis & Synthesis report for pipeline
-Mon Jan 04 16:04:27 2016
+Tue Jan 05 21:29:09 2016
 Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
 
 
@@ -14,19 +14,20 @@ Quartus II 64-Bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edit
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
   8. General Register Statistics
-  9. Port Connectivity Checks: "stick_EXE_MEM:EXE_MEM_stick"
- 10. Port Connectivity Checks: "execute:EXECUTE_PHASE|SPreg:SP_REG"
- 11. Port Connectivity Checks: "stick_ID_EXE:ID_EXE_stick"
- 12. Port Connectivity Checks: "decode:DECODE_PHASE|MX_4_1:IMM_MX"
- 13. Port Connectivity Checks: "decode:DECODE_PHASE|decoder_64:OCDECODER"
- 14. Port Connectivity Checks: "decode:DECODE_PHASE"
- 15. Port Connectivity Checks: "control_unit:CU"
- 16. Port Connectivity Checks: "stick:IF_ID_stick"
- 17. Port Connectivity Checks: "PCreg:PC_REG"
- 18. Port Connectivity Checks: "Cache:CACHE_ENTITY"
- 19. Port Connectivity Checks: "MX_4_1:PC_MUX"
- 20. Elapsed Time Per Partition
- 21. Analysis & Synthesis Messages
+  9. Port Connectivity Checks: "stick_MEM_WB:MEM_WB_stick"
+ 10. Port Connectivity Checks: "stick_EXE_MEM:EXE_MEM_stick"
+ 11. Port Connectivity Checks: "execute:EXECUTE_PHASE|SPreg:SP_REG"
+ 12. Port Connectivity Checks: "stick_ID_EXE:ID_EXE_stick"
+ 13. Port Connectivity Checks: "decode:DECODE_PHASE|MX_4_1:IMM_MX"
+ 14. Port Connectivity Checks: "decode:DECODE_PHASE|decoder_64:OCDECODER"
+ 15. Port Connectivity Checks: "decode:DECODE_PHASE"
+ 16. Port Connectivity Checks: "control_unit:CU"
+ 17. Port Connectivity Checks: "stick:IF_ID_stick"
+ 18. Port Connectivity Checks: "PCreg:PC_REG"
+ 19. Port Connectivity Checks: "Cache:CACHE_ENTITY"
+ 20. Port Connectivity Checks: "MX_4_1:PC_MUX"
+ 21. Elapsed Time Per Partition
+ 22. Analysis & Synthesis Messages
 
 
 
@@ -52,7 +53,7 @@ applicable agreement for further details.
 +--------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                         ;
 +------------------------------------+-------------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Mon Jan 04 16:04:27 2016           ;
+; Analysis & Synthesis Status        ; Successful - Tue Jan 05 21:29:09 2016           ;
 ; Quartus II 64-Bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
 ; Revision Name                      ; pipeline                                        ;
 ; Top-level Entity Name              ; processor                                       ;
@@ -197,6 +198,8 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; decoder_64.vhd                   ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/decoder_64.vhd       ;         ;
 ; stickID_EXE.vhd                  ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/stickID_EXE.vhd      ;         ;
 ; stickEXE_MEM.vhd                 ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/stickEXE_MEM.vhd     ;         ;
+; memory.vhd                       ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/memory.vhd           ;         ;
+; stickMEM_WB.vhd                  ; yes             ; User VHDL File  ; C:/Users/Filip/Desktop/Pipeline/stickMEM_WB.vhd      ;         ;
 +----------------------------------+-----------------+-----------------+------------------------------------------------------+---------+
 
 
@@ -250,13 +253,41 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "stick_EXE_MEM:EXE_MEM_stick"                                                               ;
-+-------------+--------+----------+-------------------------------------------------------------------------------------+
-; Port        ; Type   ; Severity ; Details                                                                             ;
-+-------------+--------+----------+-------------------------------------------------------------------------------------+
-; signals_out ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+-------------+--------+----------+-------------------------------------------------------------------------------------+
++----------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "stick_MEM_WB:MEM_WB_stick"                                                                      ;
++------------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port             ; Type   ; Severity ; Details                                                                             ;
++------------------+--------+----------+-------------------------------------------------------------------------------------+
+; signals_in.stall ; Input  ; Info     ; Stuck at GND                                                                        ;
+; signals_out      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "stick_EXE_MEM:EXE_MEM_stick"                                                                                            ;
++------------------------------------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port                                     ; Type   ; Severity ; Details                                                                             ;
++------------------------------------------+--------+----------+-------------------------------------------------------------------------------------+
+; signals_in.stall                         ; Input  ; Info     ; Stuck at GND                                                                        ;
+; signals_out.stall                        ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; signals_out.EX_is_prediction_entry_found ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; signals_out.EX_prediction_address        ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; signals_out.EX_pc                        ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; signals_out.EX_instr_value               ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; signals_out.EX_dstvalid_MEM              ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; signals_out.EX_dst_valid                 ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; signals_out.EX_MOV_type                  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; signals_out.EX_JMP_type                  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; signals_out.EX_RTS_type                  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; signals_out.EX_JSR_inst                  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; signals_out.EX_PUSH_inst                 ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; signals_out.EX_POP_inst                  ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; signals_out.EX_LOAD_inst                 ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; signals_out.EX_STORE_inst                ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; signals_out.EX_stall_ID_MEM              ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; signals_out.EX_stack_error               ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; signals_out.EX_bad_address               ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------------------------------------------+--------+----------+-------------------------------------------------------------------------------------+
 
 
 +----------------------------------------------------------------+
@@ -269,22 +300,20 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +---------+-------+----------+-----------------------------------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "stick_ID_EXE:ID_EXE_stick"                                                                                              ;
-+------------------------------------------+--------+----------+-------------------------------------------------------------------------------------+
-; Port                                     ; Type   ; Severity ; Details                                                                             ;
-+------------------------------------------+--------+----------+-------------------------------------------------------------------------------------+
-; signals_out.ID_is_prediction_entry_found ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; signals_out.ID_prediction                ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; signals_out.ID_prediction_address        ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; signals_out.ID_flush                     ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; signals_out.ID_instr_value               ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; signals_out.ID_dst                       ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; signals_out.ID_src1                      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; signals_out.ID_src2                      ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; signals_out.ID_IMM                       ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-; signals_out.ID_ocerror                   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+------------------------------------------+--------+----------+-------------------------------------------------------------------------------------+
++---------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "stick_ID_EXE:ID_EXE_stick"                                                                                       ;
++-----------------------------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port                              ; Type   ; Severity ; Details                                                                             ;
++-----------------------------------+--------+----------+-------------------------------------------------------------------------------------+
+; signals_out.stall                 ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; signals_out.ID_prediction_address ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; signals_out.ID_instr_value        ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; signals_out.ID_dst                ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; signals_out.ID_src1               ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; signals_out.ID_src2               ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; signals_out.ID_IMM                ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; signals_out.ID_ocerror            ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++-----------------------------------+--------+----------+-------------------------------------------------------------------------------------+
 
 
 +---------------------------------------------------------------+
@@ -318,35 +347,55 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +---------+--------+----------+-------------------------------------------------------------------------------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "control_unit:CU"                                                                                                                                       ;
-+----------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
-; Port           ; Type   ; Severity ; Details                                                                                                                                      ;
-+----------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
-; clk            ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
-; reset          ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
-; id_rts_inst    ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
-; ex_jsr_inst    ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
-; ex_pc          ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
-; mem_rts_inst   ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
-; mem_result     ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
-; id_ocerror     ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
-; ex_stack_error ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
-; ex_bad_address ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
-; id_ex_src1     ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
-; id_ex_src2     ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
-; ras_retpc_out  ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
-+----------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "control_unit:CU"                                                                                                                                                     ;
++------------------------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; Port                         ; Type   ; Severity ; Details                                                                                                                                      ;
++------------------------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
+; clk                          ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; reset                        ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; id_rts_inst                  ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; id_jsr_inst                  ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; ex_jsr_inst                  ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; ex_pc                        ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; mem_rts_inst                 ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; mem_result                   ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; id_is_prediction_entry_found ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; id_cond_type                 ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; id_ocerror                   ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; ex_stack_error               ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; ex_bad_address               ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; id_ex_src1                   ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; id_ex_src2                   ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; id_ex_has_sr1                ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; id_ex_has_sr2                ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; mem_dst                      ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; mem_has_dr                   ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; mem_dst_valid                ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; wb_dst                       ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; wb_has_dr                    ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; mem_misspred                 ; Input  ; Warning  ; Declared by entity but not connected by instance. If a default value exists, it will be used.  Otherwise, the port will be connected to GND. ;
+; fwd_wb_ex1                   ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; fwd_wb_ex2                   ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; fwd_mem_ex1                  ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; fwd_mem_ex2                  ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; stall_pc                     ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; stall_if_id                  ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; flush_if                     ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; flush_id                     ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; flush_ex                     ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
+; ras_retpc_out                ; Output ; Warning  ; Declared by entity but not connected by instance. Logic that only feeds a dangling port will be removed.                                     ;
++------------------------------+--------+----------+----------------------------------------------------------------------------------------------------------------------------------------------+
 
 
-+-------------------------------------------------------+
-; Port Connectivity Checks: "stick:IF_ID_stick"         ;
-+---------------------+-------+----------+--------------+
-; Port                ; Type  ; Severity ; Details      ;
-+---------------------+-------+----------+--------------+
-; signals_in.stall    ; Input ; Info     ; Stuck at GND ;
-; signals_in.IF_flush ; Input ; Info     ; Stuck at GND ;
-+---------------------+-------+----------+--------------+
++----------------------------------------------------+
+; Port Connectivity Checks: "stick:IF_ID_stick"      ;
++------------------+-------+----------+--------------+
+; Port             ; Type  ; Severity ; Details      ;
++------------------+-------+----------+--------------+
+; signals_in.stall ; Input ; Info     ; Stuck at GND ;
+; signals_in.flush ; Input ; Info     ; Stuck at GND ;
++------------------+-------+----------+--------------+
 
 
 +------------------------------------------+
@@ -367,13 +416,13 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------+-------+----------+------------------+
 
 
-+-------------------------------------------------+
-; Port Connectivity Checks: "MX_4_1:PC_MUX"       ;
-+---------------+-------+----------+--------------+
-; Port          ; Type  ; Severity ; Details      ;
-+---------------+-------+----------+--------------+
-; data_in[2..3] ; Input ; Info     ; Stuck at GND ;
-+---------------+-------+----------+--------------+
++----------------------------------------------+
+; Port Connectivity Checks: "MX_4_1:PC_MUX"    ;
++------------+-------+----------+--------------+
+; Port       ; Type  ; Severity ; Details      ;
++------------+-------+----------+--------------+
+; data_in[0] ; Input ; Info     ; Stuck at GND ;
++------------+-------+----------+--------------+
 
 
 +-------------------------------+
@@ -391,7 +440,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
-    Info: Processing started: Mon Jan 04 16:04:24 2016
+    Info: Processing started: Tue Jan 05 21:29:07 2016
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off pipeline -c pipeline
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 2 design units, including 1 entities, in source file pcreg.vhd
@@ -474,28 +523,37 @@ Info (12021): Found 2 design units, including 1 entities, in source file stickid
 Info (12021): Found 2 design units, including 1 entities, in source file stickexe_mem.vhd
     Info (12022): Found design unit 1: stick_EXE_MEM-stick_EXE_MEM_arch
     Info (12023): Found entity 1: stick_EXE_MEM
+Info (12021): Found 2 design units, including 1 entities, in source file memory.vhd
+    Info (12022): Found design unit 1: memory-memory_arch
+    Info (12023): Found entity 1: memory
+Info (12021): Found 2 design units, including 1 entities, in source file stickmem_wb.vhd
+    Info (12022): Found design unit 1: stick_MEM_WB-stick_MEM_WB_arch
+    Info (12023): Found entity 1: stick_MEM_WB
 Info (12127): Elaborating entity "processor" for the top level hierarchy
-Warning (10541): VHDL Signal Declaration warning at processor.vhd(232): used implicit default value for signal "CACHE_rd_data" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10541): VHDL Signal Declaration warning at processor.vhd(232): used implicit default value for signal "CACHE_wr" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10541): VHDL Signal Declaration warning at processor.vhd(233): used implicit default value for signal "CACHE_data_in" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10541): VHDL Signal Declaration warning at processor.vhd(234): used implicit default value for signal "FETCH_update_entry" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10541): VHDL Signal Declaration warning at processor.vhd(234): used implicit default value for signal "FETCH_prediction_was_success" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10541): VHDL Signal Declaration warning at processor.vhd(235): used implicit default value for signal "FETCH_update_entry_pc" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10541): VHDL Signal Declaration warning at processor.vhd(235): used implicit default value for signal "FETCH_update_entry_jmp_address" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10036): Verilog HDL or VHDL warning at processor.vhd(243): object "EXE_MEM_signal_out" assigned a value but never read
-Warning (10541): VHDL Signal Declaration warning at processor.vhd(246): used implicit default value for signal "ID_WB_write" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10036): Verilog HDL or VHDL warning at processor.vhd(248): object "ID_has_SR1" assigned a value but never read
-Warning (10036): Verilog HDL or VHDL warning at processor.vhd(248): object "ID_has_SR2" assigned a value but never read
-Warning (10541): VHDL Signal Declaration warning at processor.vhd(250): used implicit default value for signal "ID_WB_data" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10541): VHDL Signal Declaration warning at processor.vhd(251): used implicit default value for signal "ID_WB_rdst" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10541): VHDL Signal Declaration warning at processor.vhd(254): used implicit default value for signal "fwd_MEM_A" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10541): VHDL Signal Declaration warning at processor.vhd(254): used implicit default value for signal "fwd_MEM_B" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10541): VHDL Signal Declaration warning at processor.vhd(254): used implicit default value for signal "fwd_WB_A" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10541): VHDL Signal Declaration warning at processor.vhd(254): used implicit default value for signal "fwd_WB_B" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10541): VHDL Signal Declaration warning at processor.vhd(255): used implicit default value for signal "forward_A_MEM" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10541): VHDL Signal Declaration warning at processor.vhd(255): used implicit default value for signal "forward_B_MEM" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10541): VHDL Signal Declaration warning at processor.vhd(255): used implicit default value for signal "forward_A_WB" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
-Warning (10541): VHDL Signal Declaration warning at processor.vhd(255): used implicit default value for signal "forward_B_WB" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(295): used implicit default value for signal "CACHE_rd_data" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(295): used implicit default value for signal "CACHE_wr" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(296): used implicit default value for signal "CACHE_data_in" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(297): used implicit default value for signal "FETCH_update_entry" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(297): used implicit default value for signal "FETCH_prediction_was_success" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(298): used implicit default value for signal "FETCH_update_entry_pc" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(298): used implicit default value for signal "FETCH_update_entry_jmp_address" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(299): used implicit default value for signal "CU_stall_ID_MEM" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(299): used implicit default value for signal "CU_flash_ID" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(299): used implicit default value for signal "CU_flash_EX" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10036): Verilog HDL or VHDL warning at processor.vhd(307): object "MEM_WB_signal_out" assigned a value but never read
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(310): used implicit default value for signal "ID_WB_write" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10036): Verilog HDL or VHDL warning at processor.vhd(312): object "ID_has_SR1" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at processor.vhd(312): object "ID_has_SR2" assigned a value but never read
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(314): used implicit default value for signal "ID_WB_data" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(315): used implicit default value for signal "ID_WB_rdst" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(318): used implicit default value for signal "fwd_MEM_A" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(318): used implicit default value for signal "fwd_MEM_B" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(318): used implicit default value for signal "fwd_WB_A" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(318): used implicit default value for signal "fwd_WB_B" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(319): used implicit default value for signal "forward_A_MEM" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(319): used implicit default value for signal "forward_B_MEM" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(319): used implicit default value for signal "forward_A_WB" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at processor.vhd(319): used implicit default value for signal "forward_B_WB" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
 Info (12128): Elaborating entity "MX_4_1" for hierarchy "MX_4_1:PC_MUX"
 Info (12128): Elaborating entity "Cache" for hierarchy "Cache:CACHE_ENTITY"
 Warning (10036): Verilog HDL or VHDL warning at Cache.vhd(27): object "whitespace" assigned a value but never read
@@ -507,6 +565,7 @@ Info (12128): Elaborating entity "fetch" for hierarchy "fetch:FETCH_PHASE"
 Info (12128): Elaborating entity "branch_predictor" for hierarchy "fetch:FETCH_PHASE|branch_predictor:PREDICTOR"
 Info (12128): Elaborating entity "stick" for hierarchy "stick:IF_ID_stick"
 Info (12128): Elaborating entity "control_unit" for hierarchy "control_unit:CU"
+Warning (10541): VHDL Signal Declaration warning at control_unit.vhd(50): used implicit default value for signal "stall_IF_ID" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
 Info (12128): Elaborating entity "RAS" for hierarchy "control_unit:CU|RAS:RASunit"
 Info (12128): Elaborating entity "RAS_CLC" for hierarchy "control_unit:CU|RAS:RASunit|RAS_CLC:CLC"
 Info (12128): Elaborating entity "RAS_SPreg" for hierarchy "control_unit:CU|RAS:RASunit|RAS_SPreg:SP"
@@ -525,6 +584,8 @@ Info (12128): Elaborating entity "SPreg" for hierarchy "execute:EXECUTE_PHASE|SP
 Info (12128): Elaborating entity "alu" for hierarchy "execute:EXECUTE_PHASE|alu:ALU_ENTITY"
 Info (12128): Elaborating entity "MX_2_1" for hierarchy "execute:EXECUTE_PHASE|MX_2_1:JMP_MUX"
 Info (12128): Elaborating entity "stick_EXE_MEM" for hierarchy "stick_EXE_MEM:EXE_MEM_stick"
+Info (12128): Elaborating entity "memory" for hierarchy "memory:MEMORY_PHASE"
+Info (12128): Elaborating entity "stick_MEM_WB" for hierarchy "stick_MEM_WB:MEM_WB_stick"
 Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
@@ -534,10 +595,10 @@ Warning (21074): Design contains 2 input pin(s) that do not drive logic
 Info (21057): Implemented 2 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 2 input pins
     Info (21059): Implemented 0 output pins
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 30 warnings
-    Info: Peak virtual memory: 515 megabytes
-    Info: Processing ended: Mon Jan 04 16:04:27 2016
-    Info: Elapsed time: 00:00:03
-    Info: Total CPU time (on all processors): 00:00:03
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 34 warnings
+    Info: Peak virtual memory: 506 megabytes
+    Info: Processing ended: Tue Jan 05 21:29:09 2016
+    Info: Elapsed time: 00:00:02
+    Info: Total CPU time (on all processors): 00:00:02
 
 

@@ -59,6 +59,7 @@ begin
 				branch_entries(i).v <= '0';
 			end loop;
 		elsif (rising_edge(clk)) then
+			prediction <= '0';
 			if (update_entry = '1') then
 				found_entry := false;
 				for i in 0 to 31 loop
